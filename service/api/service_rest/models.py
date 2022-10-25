@@ -5,6 +5,9 @@ class AutomobileVO(models.Model):
     import_href = models.CharField(max_length = 200, unique = True)
     auto_vin = models.CharField(max_length = 20)
 
+    def __str__(self):
+        return f"VIN: {self.auto_vin}"
+
 
 class Technician(models.Model):
     name = models.CharField(max_length = 100)

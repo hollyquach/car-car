@@ -15,7 +15,7 @@ class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = ["id", "name", "employee_number"]
 
-# same encoder for detail and list since the table display includes everything for both
+# single encoder for resource&collection since list view shows most props
 class ServiceApptEncoder(ModelEncoder):
     model = ServiceAppt
     properties = [
@@ -109,7 +109,7 @@ def api_list_autoVOs(request):
             encoder=AutomobileVOEncoder,
         )
 
-# list all service appts & create new appts
+
 @require_http_methods(["GET", "POST"])
 def api_list_appts(request):
     """
@@ -188,7 +188,7 @@ def api_list_appts(request):
             return response
 
 
-# list service appts by VIN & update appt status (cancelled/finished)
+# instance view to update appt status (cancelled/finished)
 @require_http_methods(["GET", "PUT"])
 def api_view_appt(request, pk):
     """

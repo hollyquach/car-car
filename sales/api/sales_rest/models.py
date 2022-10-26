@@ -2,7 +2,12 @@ from django.db import models
 
 # Create your models here.
 class AutomobileVO(models.Model):
+    href = models.CharField(max_length=200)
     vin = models.CharField(max_length=17, unique=True)
+    year = models.PositiveSmallIntegerField()
+    model = models.CharField(max_length=250)
+    color = models.CharField(max_length=50)
+
 
     def __str__(self):
         return self.vin

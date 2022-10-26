@@ -1,5 +1,8 @@
 from asyncio.base_futures import _FINISHED
 from django.db import models
+from django.urls import reverse
+
+import datetime
 
 class AutomobileVO(models.Model):
     import_href = models.CharField(max_length = 200, unique = True)
@@ -21,7 +24,7 @@ class ServiceAppt(models.Model):
     vin = models.CharField(max_length = 20)
     owner = models.CharField(max_length = 100)
     date_time = models.DateTimeField(auto_now=False, auto_now_add=False)
-    tech = models.ManyToManyField(Technician, related_name= "ServiceAppt")
+    tech = models.ForeignKey(Technician, related_name= "ServiceAppt", on_delete=models.PROTECT)
     STATUS_CHOICES = [
         ('PENDING', 'Pending'),
         ('FINISHED', 'Finished'),
@@ -30,8 +33,9 @@ class ServiceAppt(models.Model):
     status = models.CharField(max_length = 10, choices = STATUS_CHOICES, default = 'PENDING')
     reason = models.TextField()
     vip = models.BooleanField(default = False)
+    
+    def get_api_url(self):
+        return reverse("api_view_appt", kwargs={"pk": self.pk})
 
     def __str__(self):
-        return f'({self.vin} | {date_time} | status)'
-
-
+        return f"{self.vin} | {self.date_time.isoformat(timespec='hours')} | {self.status}"

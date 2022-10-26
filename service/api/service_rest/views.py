@@ -118,7 +118,7 @@ def api_list_appts(request):
     GET | returns a dictionary with a single key "Service Appointments"
         which is a list of appointments with optional vin URL parameter
         {
-            "Service Appointments": [
+            "appointments": [
                 {
                 "href": URL to the appointment,
                 "id": database id for the appointment,
@@ -194,29 +194,23 @@ def api_view_appt(request, pk):
     """
     Single-object API for the Service Appointment resource
     ---
-        GET | returns a dictionary with a single key "Service Appointments"
-        which is a list of appointments with optional vin URL parameter
+        GET | returns a dictionary of the appointment details
         {
-            "Service Appointments": [
-                {
-                "href": URL to the appointment,
-                "id": database id for the appointment,
-                "vin": vehicle identification number (vin) of the car,
-                "owner": name of the car owner/customer,
-                "date_time": date & time of the appointment,
-                "tech": {
-                    "id": database id for the technician,
-                    "name": technician's name,
-                    "employee_number": the technician's employee number,
-                },
-                "status": status of the appointment; defaults to "PENDING",
-                "reason": description of the reason for appointment,
-                "vip": if the car was purchased from the dealership & requires VIP treatment;
-                    references if vin matches Inventory database via AutomobileVO,
-                    otherwise defaults to "False"
-                },
-                ...
-            ]
+            "href": URL to the appointment,
+            "id": database id for the appointment,
+            "vin": vehicle identification number (vin) of the car,
+            "owner": name of the car owner/customer,
+            "date_time": date & time of the appointment,
+            "tech": {
+                "id": database id for the technician,
+                "name": technician's name,
+                "employee_number": the technician's employee number,
+            },
+            "status": status of the appointment; defaults to "PENDING",
+            "reason": description of the reason for appointment,
+            "vip": if the car was purchased from the dealership & requires VIP treatment;
+                references if vin matches Inventory database via AutomobileVO,
+                otherwise defaults to "False"
         }
     ---
     PUT | updates a service appointment resource and returns it details

@@ -15,7 +15,7 @@ class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = ["id", "name", "employee_number"]
 
-# same encoder for detail and list since the table display includes everything for both
+# single encoder for resource&collection since list view shows most props
 class ServiceApptEncoder(ModelEncoder):
     model = ServiceAppt
     properties = [
@@ -109,7 +109,7 @@ def api_list_autoVOs(request):
             encoder=AutomobileVOEncoder,
         )
 
-# list all service appts & create new appts
+
 @require_http_methods(["GET", "POST"])
 def api_list_appts(request):
     """
@@ -118,7 +118,7 @@ def api_list_appts(request):
     GET | returns a dictionary with a single key "Service Appointments"
         which is a list of appointments with optional vin URL parameter
         {
-            "Service Appointments": [
+            "appointments": [
                 {
                 "href": URL to the appointment,
                 "id": database id for the appointment,
@@ -188,35 +188,29 @@ def api_list_appts(request):
             return response
 
 
-# list service appts by VIN & update appt status (cancelled/finished)
+# instance view to update appt status (cancelled/finished)
 @require_http_methods(["GET", "PUT"])
 def api_view_appt(request, pk):
     """
     Single-object API for the Service Appointment resource
     ---
-        GET | returns a dictionary with a single key "Service Appointments"
-        which is a list of appointments with optional vin URL parameter
+        GET | returns a dictionary of the appointment details
         {
-            "Service Appointments": [
-                {
-                "href": URL to the appointment,
-                "id": database id for the appointment,
-                "vin": vehicle identification number (vin) of the car,
-                "owner": name of the car owner/customer,
-                "date_time": date & time of the appointment,
-                "tech": {
-                    "id": database id for the technician,
-                    "name": technician's name,
-                    "employee_number": the technician's employee number,
-                },
-                "status": status of the appointment; defaults to "PENDING",
-                "reason": description of the reason for appointment,
-                "vip": if the car was purchased from the dealership & requires VIP treatment;
-                    references if vin matches Inventory database via AutomobileVO,
-                    otherwise defaults to "False"
-                },
-                ...
-            ]
+            "href": URL to the appointment,
+            "id": database id for the appointment,
+            "vin": vehicle identification number (vin) of the car,
+            "owner": name of the car owner/customer,
+            "date_time": date & time of the appointment,
+            "tech": {
+                "id": database id for the technician,
+                "name": technician's name,
+                "employee_number": the technician's employee number,
+            },
+            "status": status of the appointment; defaults to "PENDING",
+            "reason": description of the reason for appointment,
+            "vip": if the car was purchased from the dealership & requires VIP treatment;
+                references if vin matches Inventory database via AutomobileVO,
+                otherwise defaults to "False"
         }
     ---
     PUT | updates a service appointment resource and returns it details

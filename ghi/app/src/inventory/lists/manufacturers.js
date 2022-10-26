@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useParams } from 'react';
 
-export default function Automobiles() {
+export default function Manufacturers() {
     // > non-functional draft!
     return (
-        <>
-            <h3>PLACEHOLDER FOR CARS LIST</h3>
+        <><h3>PLACEHOLDER FOR MANUFACTURERS LIST</h3>
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -23,4 +22,5 @@ export default function Automobiles() {
             </table>
         </>
     )
+    console.log("MFGLIST::::::")
 }

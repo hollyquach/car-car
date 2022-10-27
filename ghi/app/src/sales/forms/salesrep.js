@@ -32,7 +32,7 @@ class SalesRepForm extends React.Component {
 
             const cleared = {
                 name: '',
-                employee_id: '',
+                employeeID: '',
             };
             this.setState(cleared);
         }
@@ -63,7 +63,7 @@ class SalesRepForm extends React.Component {
                                 <label htmlFor="name">Name</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleEmployeeIDChange} placeholder="Employee ID" required type="number" name="employee_id" id="employee_id" className="form-control" value={this.state.employee_id} />
+                                <input onChange={this.handleEmployeeIDChange} placeholder="Employee ID" required type="number" name="employee_id" id="employee_id" className="form-control" value={this.state.employeeID} />
                                 <label htmlFor="employee_id">Employee ID</label>
                             </div>
                             <button className="btn btn-primary">Create</button>

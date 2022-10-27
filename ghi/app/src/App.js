@@ -6,6 +6,7 @@ import SalesForm from './sales/forms/sales'
 import SalesRepForm from './sales/forms/salesrep'
 import VehicleForm from './inventory/forms/vehicle';
 import SalesList from './sales/lists/allsales';
+import SalesRepSalesList from './sales/lists/salesrepsales';
 
 function App(props) {
   return (

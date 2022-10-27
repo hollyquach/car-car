@@ -9,21 +9,6 @@ class SalesList extends React.Component {
         }
     }
 
-    //     async function loadSales() {
-    //     const response = await fetch('http://localhost:8090/api/sales/');
-    //     if (response.ok) {
-    //         const data = await response.json();
-    //         root.render(
-    //             <React.StrictMode>
-    //                 <App sales={data.sales} />
-    //             </React.StrictMode>
-    //         );
-    //     } else {
-    //         console.error(response);
-    //     }
-    // }
-    // loadSales();
-
     async componentDidMount() {
         const allSalesUrl = 'http://localhost:8090/api/sales/';
 
@@ -43,6 +28,7 @@ class SalesList extends React.Component {
         console.log("HERE", this.state)
         return (
             <div>
+                <h1>Sales History</h1>
                 <table className="table table-striped">
                     <thead>
                         <tr>

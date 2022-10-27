@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
 import App from './App';
 import MainPage from './MainPage';
@@ -16,10 +16,10 @@ import AutomobileForm from './inventory/forms/automobileForm';
 
 // SALES IMPORTS
 import Sales from './sales/salesMain';
-// import AllSales from './sales/lists/allsales';
+import SalesList from './sales/lists/allsales';
 // import SalesRepSales from './sales/lists/salesrepsales';
 import CustomerForm from './sales/forms/customer';
-// import SalesRepForm from './sales/forms/salesperson';
+import SalesRepForm from './sales/forms/salesrep';
 import SalesForm from './sales/forms/sales';
 
 // SERVICE IMPORTS
@@ -48,10 +48,10 @@ root.render(
                     </Route>
 
                     <Route path="sales" element={<Sales />} >
-                        {/* <Route index element={<AllSales />} /> */}
+                        <Route index element={<SalesList />} />
                         {/* <Route path=":salesrepid" element={<SalesRepSales />} /> */}
                         <Route path="customer/new" element={<CustomerForm />} />
-                        {/* <Route path="rep/new" element={<SalesRepForm />} /> */}
+                        <Route path="rep/new" element={<SalesRepForm />} />
                         <Route path="record/new" element={<SalesForm />} />
                     </Route>
 
@@ -60,7 +60,6 @@ root.render(
                         <Route path="appointment/new" element={<ServiceForm />} />
                         <Route path="technician/new" element={<TechForm />} />
                     </Route>
-
                     <Route path="*" element={<None />} />
                 </Route>
             </Routes>
@@ -70,12 +69,14 @@ root.render(
 
 
 function None(props) {
+    const navigate = useNavigate();
     // return for undefined path
     return (
         <div class="alert alert-dark m-5 text-center" role="alert">
             <h1>🙈🙈🙈</h1>
             <h3>nothing to see here!</h3>
             <p>broken link or something similar - please try another URL</p>
+            <button className="btn btn-primary" onClick={() => navigate(-1)}>Go back</button>
         </div>
     );
 }

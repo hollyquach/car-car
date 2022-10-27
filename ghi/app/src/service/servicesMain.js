@@ -20,8 +20,8 @@ Service History (filtered by VIN)
 export default function Service() {
     return (
         <>
-            <h1>Service</h1>
-                <nav className="navbar">
+            <h1 className="text-center">Service</h1>
+                <nav className="navbar-light">
                     <div class="container-fluid">
                         <ul className="nav nav-tabs justify-content-end flex-column flex-sm-row">
                             <li className="nav-item p-2">

@@ -42,7 +42,7 @@ class SalesForm extends React.Component {
 
             const cleared = {
                 total: '',
-                sales_rep: '',
+                sales_reps: '',
                 customer: '',
                 automobile_vo: '',
             };

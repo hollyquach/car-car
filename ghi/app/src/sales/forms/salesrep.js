@@ -1,12 +1,11 @@
 import React from 'react';
 
-class CustomerForm extends React.Component {
+class SalesRepForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             name: '',
-            address: '',
-            phoneNumber: '',
+            employeeID: '',
         };
     }
 
@@ -14,10 +13,10 @@ class CustomerForm extends React.Component {
         e.preventDefault();
 
         const data = { ...this.state };
-        data.phone_number = data.phoneNumber;
-        delete data.phoneNumber;
+        data.employee_id = data.employeeID;
+        delete data.employeeID;
 
-        const customerUrl = 'http://localhost:8090/api/customer/';
+        const salesRepUrl = 'http://localhost:8090/api/sales_rep/';
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -26,15 +25,14 @@ class CustomerForm extends React.Component {
             },
         };
 
-        const response = await fetch(customerUrl, fetchConfig);
+        const response = await fetch(salesRepUrl, fetchConfig);
         if (response.ok) {
-            const newCustomer = await response.json();
-            console.log(newCustomer);
+            const newSalesRep = await response.json();
+            console.log(newSalesRep);
 
             const cleared = {
                 name: '',
-                address: '',
-                phoneNumber: '',
+                employeeID: '',
             };
             this.setState(cleared);
         }
@@ -46,36 +44,27 @@ class CustomerForm extends React.Component {
         })
     }
 
-    handleAddressChange = (e) => {
+    handleEmployeeIDChange = (e) => {
         this.setState({
-            address: e.target.value
+            employeeID: e.target.value
         })
     }
 
-    handlePhoneNumberChange = (e) => {
-        this.setState({
-            phoneNumber: e.target.value
-        })
-    }
 
     render() {
         return (
             <div className="row">
                 <div className="offset-3 col-6">
                     <div className="shadow p-4 mt-4">
-                        <h1>Create a new customer</h1>
+                        <h1>Create a sales rep</h1>
                         <form onSubmit={this.handleSubmit} id="create-customer-form">
                             <div className="form-floating mb-3">
                                 <input onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" value={this.state.name} />
                                 <label htmlFor="name">Name</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleAddressChange} placeholder="Address" required type="text" name="address" id="address" className="form-control" value={this.state.address} />
-                                <label htmlFor="address">Address</label>
-                            </div>
-                            <div className="form-floating mb-3">
-                                <input onChange={this.handlePhoneNumberChange} placeholder="Phone number" required type="text" name="phone_number" id="phone_number" className="form-control" value={this.state.phoneNumber} />
-                                <label htmlFor="phone_number">Phone number</label>
+                                <input onChange={this.handleEmployeeIDChange} placeholder="Employee ID" required type="number" name="employee_id" id="employee_id" className="form-control" value={this.state.employeeID} />
+                                <label htmlFor="employee_id">Employee ID</label>
                             </div>
                             <button className="btn btn-primary">Create</button>
                         </form>
@@ -86,4 +75,4 @@ class CustomerForm extends React.Component {
     }
 }
 
-export default CustomerForm;
+export default SalesRepForm;

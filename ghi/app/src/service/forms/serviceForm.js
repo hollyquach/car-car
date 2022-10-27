@@ -137,7 +137,7 @@ export default class ServiceForm extends React.Component {
                                     })}
                                 </select>
                             </div>
-                            <input type="submit" id="submit"/>
+                            <button className="btn btn-primary">Create</button>
                         </form>
                     </div>
                 </div>

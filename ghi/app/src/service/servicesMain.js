@@ -32,8 +32,8 @@ export default function Service() {
                                     New
                                 </NavLink>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><NavLink className="dropdown-item" to="/service/appointment">Appointment</NavLink></li>
-                                    <li><NavLink className="dropdown-item" to="/service/technician">Technician</NavLink></li>
+                                    <li><NavLink className="dropdown-item" to="/service/appointment/new">Appointment</NavLink></li>
+                                    <li><NavLink className="dropdown-item" to="/service/technician/new">Technician</NavLink></li>
                                 </ul>
                             </li>
                         </ul>

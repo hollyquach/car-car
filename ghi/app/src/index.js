@@ -18,9 +18,9 @@ import AutomobileForm from './inventory/forms/automobileForm';
 import Sales from './sales/salesMain';
 // import AllSales from './sales/lists/allsales';
 // import SalesRepSales from './sales/lists/salesrepsales';
-// import CustomerForm from './sales/forms/customer';
+import CustomerForm from './sales/forms/customer';
 // import SalesRepForm from './sales/forms/salesperson';
-import SalesRecordForm from './sales/forms/salesform';
+import SalesForm from './sales/forms/sales';
 
 // SERVICE IMPORTS
 import Service from './service/servicesMain';
@@ -48,25 +48,24 @@ root.render(
                     </Route>
 
                     <Route path="sales" element={<Sales />} >
-                        {/* <Route index element={<AllSales />} />
-                        <Route path=":salesrepid" element={<SalesRepSales />} />
+                        {/* <Route index element={<AllSales />} /> */}
+                        {/* <Route path=":salesrepid" element={<SalesRepSales />} /> */}
                         <Route path="customer/new" element={<CustomerForm />} />
-                        <Route path="rep/new" element={<SalesRepForm />} /> */}
-                        <Route path="record/new" element={<SalesRecordForm />} />
+                        {/* <Route path="rep/new" element={<SalesRepForm />} /> */}
+                        <Route path="record/new" element={<SalesForm />} />
                     </Route>
 
                     <Route path="service" element={<Service />} >
                         <Route index element={<main><h3>BLANK INDEX PAGE FOR SERVICE</h3></main>} />
-                        <Route path="appointment" element={<ServiceForm />} />
-                        <Route path="technician" element={<TechForm />} />
+                        <Route path="appointment/new" element={<ServiceForm />} />
+                        <Route path="technician/new" element={<TechForm />} />
                     </Route>
 
                     <Route path="*" element={<None />} />
                 </Route>
             </Routes>
         </div>
-    </BrowserRouter>,
-    root
+    </BrowserRouter>
 );
 
 

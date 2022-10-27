@@ -1,41 +1,81 @@
 import React, { useState } from 'react';
 
-export default class TechForm extends React.Component{
+/* Parameters for POST api_list_techs
+{
+    "name": technician's name,
+    "employee_number": the technician's employee number,
+}
+*/
 
-    Form = (props) => {
-        const [ name, setName ] = useState('');
-        const [ employee_id, setEmployeeID ] = useState('');
+export default class TechForm extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            name: '',
+            employee_number: '',
+        };
+    }
+//> Event handler for submit -> POST to api
+    handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(e)
 
+        const data = { ...this.state };
+        console.log("FORM DATA STATE ::::", data);
+
+        const techUrl = 'http://localhost:8080/api/techs/';
+        const fetchConfig = {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        
+        const response = await fetch(techUrl, fetchConfig);
+        if (response.ok) {
+            const technician = await response.json();
+            console.log("POST tech (JSON) ::::", technician);
+            
+            const cleared = {
+                name: '',
+                employee_number: '',
+            };
+            this.setState(cleared);
+            console.log("CLEARED:::", cleared);
+        }
+    }
+
+    handleNameChange = (event) => {
+        this.setState({
+            name: event.target.value
+        })
+    }
+
+    handleNumberChange = (event) => {
+        this.setState({
+            employee_number: event.target.value
+        })
+    }
+
+    render(){
         return (
-            <div>
-                <form id="form" >
-                    <span>Name : <input type="text" name="name" value={name} onChange={(event) => setName(event.target.value)}/></span>
-                    <span>Employee ID: <input type="text" name="employee_id" value={employee_id} onChange={(event) => setEmployeeID(event.target.value)}/></span>
-                    <input type="submit" id="submit"/>
-                </form>
+            <div className="row">
+                <div className="offset-3 col-6">
+                    <div className="shadow p-4 mt-4">
+                        <h1>Create new service technician</h1>
+                        <form onSubmit={this.handleSubmit} id="create-technician=form" >
+                            <div className="form-floating mb-3">
+                                <input placeholder="Name" required type="text" className="name" value={this.state.name} onChange={this.handleNameChange}/>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input placeholder="Employee #" required type="text" className="employee_number" value={this.state.employee_number} onChange={this.handleNumberChange}/>
+                            </div>
+                            <input type="submit" id="submit"/>
+                        </form>
+                    </div>
+                </div>
             </div>
         )
     }
-    
-    render() {
-        
-        return (
-            <div className="my-5 container">
-            <div className="row">
-            <div className="col">
-                <div className="card shadow">
-                <div className="card-body">
-                    <form className="form" id="create-technician-form">
-                    <h3 className="card-title">NEW TECHNICIAN FORM PLACEHOLDER</h3>
-                    <p className="mb-3">
-                        BLAH BLAH BLAH
-                    </p>
-                    </form>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        );
-    }
-}
+};

@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 */
 
 export default class TechForm extends React.Component {
+//> set inital state for properties
     constructor(props) {
         super(props)
         this.state = {
@@ -15,14 +16,15 @@ export default class TechForm extends React.Component {
             employee_number: '',
         };
     }
-//> Event handler for submit -> POST to api
+
+    
+//> submit event handler -> POST to api
     handleSubmit = async (e) => {
+        //override GET request
         e.preventDefault();
-        console.log(e)
-
         const data = { ...this.state };
-        console.log("FORM DATA STATE ::::", data);
-
+        
+        // define fetch parameters for POST request
         const techUrl = 'http://localhost:8080/api/techs/';
         const fetchConfig = {
             method: "POST",
@@ -35,30 +37,35 @@ export default class TechForm extends React.Component {
         const response = await fetch(techUrl, fetchConfig);
         if (response.ok) {
             const technician = await response.json();
-            console.log("POST tech (JSON) ::::", technician);
             
+            // clear form
             const cleared = {
                 name: '',
                 employee_number: '',
             };
             this.setState(cleared);
-            console.log("CLEARED:::", cleared);
+
+        } else {
+            console.log("TECHNICIAN FORM SUBMIT ERROR:", response)
         }
     }
 
+
+//> state handling for props
     handleNameChange = (event) => {
         this.setState({
             name: event.target.value
         })
     }
-
     handleNumberChange = (event) => {
         this.setState({
             employee_number: event.target.value
         })
     }
 
-    render(){
+
+//> form definition
+    render() {
         return (
             <div className="row">
                 <div className="offset-3 col-6">

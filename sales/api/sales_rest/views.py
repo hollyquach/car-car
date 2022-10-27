@@ -29,30 +29,42 @@ def api_automobile_vo(request):
     )
 
 
-@require_http_methods(["POST"])
+@require_http_methods(["GET", "POST"])
 def api_customer(request):
-    content = json.loads(request.body)
-    # customer_id = content['customer_id']
-    # customer_data = Customer.objects.get()
-    # content['customer'] = customer_data
-    customer = Customer.objects.create(**content)
-    return JsonResponse(
-        customer,
-        encoder=CustomerEncoder,
-        safe=False,
-    )
+    if request.method == "GET":
+        customers = Customer.objects.all()
+        return JsonResponse(
+            {"customers": customers},
+            encoder=CustomerEncoder,
+            safe=False
+        )
+    else:
+        content = json.loads(request.body)
+        customer = Customer.objects.create(**content)
+        return JsonResponse(
+            customer,
+            encoder=CustomerEncoder,
+            safe=False,
+        )
 
 
-@require_http_methods(["POST"])
+@require_http_methods(["GET", "POST"])
 def api_sales_rep(request):
-    content = json.loads(request.body)
-    sales_rep = SalesRep.objects.create(**content)
-    return JsonResponse(
-        sales_rep,
-        encoder=SalesRepEncoder,
-        safe=False,
-    )
-
+    if request.method == "GET":
+        sales_reps = SalesRep.objects.all()
+        return JsonResponse(
+            {"sales_reps": sales_reps},
+            encoder=SalesRepEncoder,
+            safe=False
+        )
+    else:
+        content = json.loads(request.body)
+        sales_rep = SalesRep.objects.create(**content)
+        return JsonResponse(
+            sales_rep,
+            encoder=SalesRepEncoder,
+            safe=False,
+        )
 
 
 @require_http_methods(["GET", "POST"])
@@ -100,15 +112,3 @@ def api_sales_record(request, sales_rep_id=None):
             encoder=SalesRecordEncoder,
             safe=False,
         )
-
-# Great Idea, bad coding practice
-
-# @require_http_methods(["GET"])
-# def sales_rep_sales(request, sales_rep_id):
-#     if request.method == "GET":
-#         sales = SalesRecord.objects.filter(sales_rep=sales_rep_id)
-#         return JsonResponse(
-#             {"sales": sales},
-#             encoder=SalesRecordEncoder,
-#             safe=False
-#         )

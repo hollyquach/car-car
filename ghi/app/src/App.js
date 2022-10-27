@@ -3,12 +3,12 @@ import Nav from './Nav';
 
 
 function App(props) {
-    return (
-        <>
-        <Nav />
-        <Outlet />
+  return (
+    <>
+      <Nav />
+      <Outlet />
     </>
-    );
+  );
 }
 
 export default App

@@ -8,11 +8,6 @@ class CustomerForm extends React.Component {
             address: '',
             phoneNumber: '',
         };
-        // this.handleNameChange = this.handleNameChange.bind(this);
-        // this.handleRoomChange = this.handleRoomChange.bind(this);
-        // this.handleCityChange = this.handleCityChange.bind(this);
-        // this.handleChooseStateChange = this.handleChooseStateChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit = async (e) => {
@@ -21,8 +16,7 @@ class CustomerForm extends React.Component {
         const data = { ...this.state };
         data.phone_number = data.phoneNumber;
         delete data.phoneNumber;
-        // delete data.states;
-        //maybe revist this section 1:50
+
         const customerUrl = 'http://localhost:8090/api/customer/';
         const fetchConfig = {
             method: "post",
@@ -76,11 +70,11 @@ class CustomerForm extends React.Component {
                                 <label htmlFor="name">Name</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleAddressChange} placeholder="Address" required type="text" name="room_count" id="address" className="form-control" value={this.state.address} />
+                                <input onChange={this.handleAddressChange} placeholder="Address" required type="text" name="address" id="address" className="form-control" value={this.state.address} />
                                 <label htmlFor="address">Address</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={this.handlePhoneNumberChange} placeholder="Phone number" required type="text" name="city" id="phone_number" className="form-control" value={this.state.phoneNumber} />
+                                <input onChange={this.handlePhoneNumberChange} placeholder="Phone number" required type="text" name="phone_number" id="phone_number" className="form-control" value={this.state.phoneNumber} />
                                 <label htmlFor="phone_number">Phone number</label>
                             </div>
                             <button className="btn btn-primary">Create</button>

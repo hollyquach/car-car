@@ -1,22 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
-//!! Service List
-/*
-Common Fields
-    - VIN
-    - Customer Name
-    - Date
-    - Time
-    - Technician
-    - Reason
-    - Appointments List
-    - Cancel >> button (hook)
-    - Finished >> button (hook)
-Service History (filtered by VIN)
-    - Search >> endpoint >> /api/services?vin=<:vin>
-*/
-
 export default function Service() {
     return (
         <>

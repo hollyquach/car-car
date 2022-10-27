@@ -46,7 +46,7 @@ export default class TechForm extends React.Component {
             this.setState(cleared);
 
         } else {
-            console.log("TECHNICIAN FORM SUBMIT ERROR:", response)
+            console.log("TECHNICIAN FORM SUBMIT ERROR !!")
         }
     }
 

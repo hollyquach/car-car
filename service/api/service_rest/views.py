@@ -160,7 +160,7 @@ def api_list_appts(request):
         else:
             appts = ServiceAppt.objects.all()
         return JsonResponse(
-            {"Service Appointments": appts},
+            {"Appointments": appts},
             encoder=ServiceApptEncoder
         )
     else: # POST method to create service appointment

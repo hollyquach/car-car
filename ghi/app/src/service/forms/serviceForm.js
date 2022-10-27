@@ -101,7 +101,7 @@ export default class ServiceForm extends React.Component {
             const data = await response.json();
             this.setState({techs: data.techs});
         } else {
-            console.log("SERVICE TECH DATA FETCH ERROR:", response)
+            console.log("SERVICE TECH DATA FETCH ERROR !!")
         }
     }
 

@@ -24,6 +24,7 @@ import SalesForm from './sales/forms/sales';
 
 // SERVICE IMPORTS
 import Service from './service/servicesMain';
+import ServiceList from './service/serviceList';
 import TechForm from './service/forms/techForm';
 import ServiceForm from './service/forms/serviceForm';
 
@@ -56,7 +57,7 @@ root.render(
                     </Route>
 
                     <Route path="service" element={<Service />} >
-                        <Route index element={<main><h3>BLANK INDEX PAGE FOR SERVICE</h3></main>} />
+                        <Route index element={<ServiceList />} />
                         <Route path="appointment/new" element={<ServiceForm />} />
                         <Route path="technician/new" element={<TechForm />} />
                     </Route>

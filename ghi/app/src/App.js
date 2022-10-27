@@ -4,6 +4,8 @@ import Nav from './Nav';
 
 import CustomerForm from './sales/forms/customer'
 import SalesForm from './sales/forms/sales'
+import SalesRepForm from './sales/forms/salesrep'
+import VehicleForm from './inventory/forms/vehicle';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path="/customer" element={<CustomerForm />} />
           {/* delete this */}
           <Route path="/sales" element={<SalesForm />} />
+          <Route path="/sales_rep" element={<SalesRepForm />} />
+          <Route path="/vehicle" element={<VehicleForm />} />
           {/* end delete */}
         </Routes>
       </div>

@@ -63,7 +63,7 @@ def api_list_techs(request):
     if request.method == "GET":
         techs = Technician.objects.all()
         return JsonResponse(
-            {"Service Techs": techs},
+            {"techs": techs},
             encoder=TechnicianEncoder,
         )
     else: # POST method to create technicians

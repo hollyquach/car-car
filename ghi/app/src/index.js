@@ -31,6 +31,7 @@ import ServiceForm from './service/forms/serviceForm';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
+<<<<<<< HEAD
     <BrowserRouter>
         <div className="container">
             <Routes>
@@ -80,3 +81,24 @@ function None(props) {
         </div>
     );
 }
+=======
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);
+
+// async function loadSales() {
+//     const response = await fetch('http://localhost:8090/api/sales/');
+//     if (response.ok) {
+//         const data = await response.json();
+//         root.render(
+//             <React.StrictMode>
+//                 <App sales={data.sales} />
+//             </React.StrictMode>
+//         );
+//     } else {
+//         console.error(response);
+//     }
+// }
+// loadSales();
+>>>>>>> 01301d9690b72a6a1834d249a5fd8720df889768

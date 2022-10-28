@@ -36,7 +36,7 @@ export default class AutomobileForm extends React.Component {
                 color: '',
                 year: '',
                 vin: '',
-                model: '',
+                model_id: '',
             };
             this.setState(cleared);
         } else {

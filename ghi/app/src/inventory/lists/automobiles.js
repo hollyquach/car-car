@@ -23,7 +23,7 @@ class AutomobilesList extends React.Component {
     render() {
         // if (Response.ok) {
         if (this.state.autos === undefined) {
-            return null;
+            this.setState({ autos: [], });
         }
         return (
             <div>

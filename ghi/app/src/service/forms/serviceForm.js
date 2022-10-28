@@ -61,7 +61,7 @@ export default class ServiceForm extends React.Component {
             };
             this.setState(cleared);
         } else {
-            console.log("SERVICE APPT FORM SUBMIT ERROR !!")
+            console.error("SERVICE APPT FORM SUBMIT ERROR !!")
         }
     }
 

@@ -21,8 +21,8 @@ class VehicleList extends React.Component {
     }
 
     render() {
-        if (this.state.autos === undefined) {
-            this.setState({autos: []})
+        if (this.state.models === undefined) {
+            this.state.models = [];
         }
         return (
             <div>

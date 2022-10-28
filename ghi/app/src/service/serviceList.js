@@ -51,7 +51,7 @@ export default function ServiceList() {
             }
             setAppts(data.Appointments);
         } catch {
-            console.log("ERROR FETCH MFGS DATA !!")
+            console.error("ERROR FETCH MFGS DATA !!")
         }
     }
 

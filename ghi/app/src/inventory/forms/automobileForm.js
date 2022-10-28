@@ -12,12 +12,12 @@ export default class AutomobileForm extends React.Component {
         };
     }
 
+
     handleSubmit = async (e) => {
         e.preventDefault();
-
         const data = { ...this.state };
         delete data.modelopts;
-        console.log("DATA:::::", data)
+
 
         const autoURL = 'http://localhost:8100/api/automobiles/';
         const fetchConfig = {
@@ -28,11 +28,10 @@ export default class AutomobileForm extends React.Component {
             },
         };
 
+
         const response = await fetch(autoURL, fetchConfig);
         if (response.ok) {
-            const newauto = await response.json();
-            console.log("POST RESPONSE:::", newauto);  // is this one okay Holly?
-
+            await response.json();
             const cleared = {
                 color: '',
                 year: '',
@@ -40,16 +39,24 @@ export default class AutomobileForm extends React.Component {
                 model: '',
             };
             this.setState(cleared);
+        } else {
+            console.error("AUTOMOBILE FORM SUBMIT ERROR !!")
         }
     }
+
 
     // pulling data for model select options
     async componentDidMount() {
         const modelsURL = `http://localhost:8100/api/models/`
         const response = await fetch(modelsURL);
-        const data = await response.json();
-        this.setState({modelopts: data.models})
+        if (response.ok) {
+            const data = await response.json();
+            this.setState({modelopts: data.models})
+        } else {
+            console.error("VEHICLE MODEL DATA FETCH ERROR !!")
+        }
     }
+
 
     handleVINChange = (event) => {
         this.setState({
@@ -71,6 +78,7 @@ export default class AutomobileForm extends React.Component {
             color: event.target.value
         })
     }
+
 
     render() {
         return (

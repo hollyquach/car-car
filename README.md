@@ -48,12 +48,15 @@ CarCar will help you manage technicians, times of service, and services performe
 5. Open VSCode terminal  to top level directory<br>`control + \` `
 6. Build docker containers & run:<br>
     `docker-compose up --build`
-7. Open in a browser [http://localhost:3000/](http://localhost:3000/)
+7. Open in a browser<br> [http://localhost:3000/](http://localhost:3000/)
 8. Take a load off and Enjoy, the hard work is over, now it's our turn!
 
 
-## Design
-### API Refrerence
+## Archetecture
+
+---
+
+### API Refrerence:
 ![api diagram](ghi/app/src/images/CarCarAPIs.png)
 
 ### Services - Docker
@@ -70,15 +73,38 @@ CarCar will help you manage technicians, times of service, and services performe
 | sales-api | project-beta-sales-api | ports: 8090:8000 |
 | sales-poller | project-beta-sales-poller |  |
 
+## Design
 
-### Service microservice
+---
+
+### Inventory
+- Input a Vehicle
+![Vehicle Input](ghi/app/src/images/Create a Vehicle.png)
+- Input an Automobile
+![Automobile Input]()
+- Input a Manufacturer
+![Manufacturer Input]()
+- Show a list of Vehicles
+![Vehicle List](ghi/app/src/images/Vehicle List.png)
+- Show a list of Automobiles
+![Automobiles List](ghi/app/src/images/Automobile List.png)
+- Show a list of Manufacturers
+![Automobiles List]()
+
+### Services microservice
 
 Explain your models and integration with the inventory
 microservice, here.
 
 ### Sales microservice
 
-Explain your models and integration with the inventory
-microservice, here.
-
----
+- Add a Sales Rep
+![Sales Rep input](ghi/app/src/images/Create a Sales rep.png)
+- Add a Customer
+![Customer Input](ghi/app/src/images/Create a Customer.png)
+- Create a Sales Record
+![Sales Record Input](ghi/app/src/images/Make a Sale.png)
+- Show a list of Sales
+![Vehicle List](ghi/app/src/images/Sales History.png)
+- Show a Sales Reps Performance
+![Automobiles List](ghi/app/src/images/Sales Rep History.png)

@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Manufacturers() {
-    // > non-functional draft!
+    const[ mfgs, setMFGs ] = useState ([]);
+
+    const getData = async () => {
+        const url = 'http://localhost:8100/api/manufacturers/'
+        const response = await fetch(url);
+        let data = await response.json();
+        setMFGs(data.manufacturers);
+    }
+    useEffect(() => {getData()}, []);
+
     return (
-        <><h3 className="my-3">PLACEHOLDER FOR MANUFACTURERS LIST</h3>
+        <><h3 className="my-3">Manufacturers List</h3>
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -11,13 +20,13 @@ export default function Manufacturers() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {props.mfgs.map(mfg=> {
+                    {mfgs.map(mfg=> {
                         return (
                             <tr key={mfg.href}>
                                 <td>{mfg.name}</td>
                             </tr>
                         );
-                    })} */}
+                    })}
                 </tbody>
             </table>
         </>

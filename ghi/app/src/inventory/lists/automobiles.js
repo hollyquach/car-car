@@ -1,26 +1,61 @@
-import React from 'react';
+import React from "react";
 
-export default function Automobiles() {
-    // > non-functional draft!
-    return (
-        <>
-            <h3>PLACEHOLDER FOR CARS LIST</h3>
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* {props.mfgs.map(mfg=> {
-                        return (
-                            <tr key={mfg.href}>
-                                <td>{mfg.name}</td>
-                            </tr>
-                        );
-                    })} */}
-                </tbody>
-            </table>
-        </>
-    )
+
+class AutomobilesList extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            autos: [],
+        }
+    }
+
+    async componentDidMount() {
+        const url = 'http://localhost:8100/api/automobiles';
+
+        const response = await fetch(url);
+
+        if (response.ok) {
+            const Data = await response.json();
+            console.log("didmount", Data)
+            this.setState({ autos: Data.autos });
+        }
+    }
+
+    render() {
+        // if (Response.ok) {
+        if (this.state.autos === undefined) {
+            return null;
+        }
+        console.log("Render", this.state)
+        return (
+            <div>
+                <h1>Automobiles List</h1>
+                <table className="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Vin</th>
+                            <th>Color</th>
+                            <th>Year</th>
+                            <th>Model</th>
+                            <th>Manufacturer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.autos.map(automobile => {
+                            return (
+                                <tr key={automobile.id}>
+                                    <td>{automobile.vin}</td>
+                                    <td>{automobile.color}</td>
+                                    <td>{automobile.year}</td>
+                                    <td>{automobile.model.name}</td>
+                                    <td>{automobile.model.manufacturer.name}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
 }
+export default AutomobilesList;

@@ -33,7 +33,6 @@ export default class TechForm extends React.Component {
                 'Content-Type': 'application/json',
             },
         };
-        console.log("passed FETCH:::", fetchConfig)
         const response = await fetch(techUrl, fetchConfig);
         if (response.ok) {
             await response.json();
@@ -46,7 +45,7 @@ export default class TechForm extends React.Component {
             this.setState(cleared);
 
         } else {
-            console.log("TECHNICIAN FORM SUBMIT ERROR !!")
+            console.error("TECHNICIAN FORM SUBMIT ERROR !!")
         }
     }
 

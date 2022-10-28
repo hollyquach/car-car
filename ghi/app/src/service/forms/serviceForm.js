@@ -61,7 +61,7 @@ export default class ServiceForm extends React.Component {
             };
             this.setState(cleared);
         } else {
-            console.log("SERVICE APPT FORM SUBMIT ERROR:", response)
+            console.log("SERVICE APPT FORM SUBMIT ERROR !!")
         }
     }
 
@@ -101,7 +101,7 @@ export default class ServiceForm extends React.Component {
             const data = await response.json();
             this.setState({techs: data.techs});
         } else {
-            console.log("SERVICE TECH DATA FETCH ERROR !!")
+            console.error("SERVICE TECH DATA FETCH ERROR !!")
         }
     }
 

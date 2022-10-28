@@ -28,7 +28,7 @@ export default function ServiceList() {
         if (response.ok) {
             await response.json();
         } else {
-            console.log("STATUS UPDATE ERROR");
+            console.error("STATUS UPDATE ERROR");
         }
         getData();
     }
@@ -39,16 +39,20 @@ export default function ServiceList() {
         if (params !== undefined) {
             urlParam = `?vin=${params.searchVIN}`
         }
-        let url = `http://localhost:8080/api/services${urlParam}`
-        const response = await fetch(url);
-        let data = await response.json();
-
-        if (data.Appointments.length === 0) {
-            url = 'http://localhost:8080/api/services/'
+        try {
+            let url = `http://localhost:8080/api/services${urlParam}`
             const response = await fetch(url);
-            data = await response.json();
+            let data = await response.json();
+
+            if (data.Appointments.length === 0) {
+                url = 'http://localhost:8080/api/services/'
+                const response = await fetch(url);
+                data = await response.json();
+            }
+            setAppts(data.Appointments);
+        } catch {
+            console.log("ERROR FETCH MFGS DATA !!")
         }
-        setAppts(data.Appointments);
     }
 
 

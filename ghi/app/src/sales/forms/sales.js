@@ -38,7 +38,7 @@ class SalesForm extends React.Component {
         const response = await fetch(salesUrl, fetchConfig);
         if (response.ok) {
             const newSale = await response.json();
-            console.log(newSale);
+            console.log(newSale); // is this one okay Holly?
 
             const cleared = {
                 total: '',

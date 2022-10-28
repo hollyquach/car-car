@@ -10,15 +10,8 @@ class SalesRepSalesList extends React.Component {
         };
     }
 
-    // handleSalesRepChange = (e) => {
-    //     this.setState({
-    //         salesRep: e.target.value
-    //     })
-    // }
-
     handleSalesRepChange = async (e) => {
         const id = e.target.value;
-        console.log("id", id)
         const salesRepSalesResponse = await fetch(`http://localhost:8090/api/sales_rep_sales/${id}`);
 
         if (salesRepSalesResponse.ok) {
@@ -40,7 +33,6 @@ class SalesRepSalesList extends React.Component {
     }
 
     render() {
-        console.log("render", this.state.sales)
         return (
             <div className="shadow p-4 mt-4">
                 <h3 className="my-3">Sales Rep History</h3>
@@ -90,26 +82,3 @@ class SalesRepSalesList extends React.Component {
 }
 
 export default SalesRepSalesList;
-
-//Pseudocode/reminders for tomorrow
-// make a Form to select a sales rep
-// get the sales history from the sales rep
-
-// use this url to get sales rep data based on sales rep id
-// http://localhost:8090/api/sales_rep_sales/2/
-
-// then display a table of data for their sales
-// include:
-// sales rep
-// Customer
-// Vin
-// sales price/ total
-
-// for react main page
-//localhost:3000
-// for Inventory admin
-//localhost:8100/admin
-// for Sales admin
-// localhost:8090/admin
-
-// https://gitlab.com/leweymelchor/project-beta.git

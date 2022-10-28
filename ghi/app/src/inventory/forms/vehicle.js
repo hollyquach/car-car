@@ -33,7 +33,7 @@ class VehicleForm extends React.Component {
         const response = await fetch(vehicleUrl, fetchConfig);
         if (response.ok) {
             const newVehicle = await response.json();
-            console.log(newVehicle);
+            console.log(newVehicle);  // is this one okay Holly?
 
             const cleared = {
                 name: '',

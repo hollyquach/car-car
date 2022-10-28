@@ -16,17 +16,14 @@ class VehicleList extends React.Component {
 
         if (response.ok) {
             const Data = await response.json();
-            console.log("didmount", Data)
             this.setState({ models: Data.models });
         }
     }
 
     render() {
-        // if (Response.ok) {
         if (this.state.autos === undefined) {
-            this.state.autos = []
+            this.setState.models = []
         }
-        console.log("Render", this.state)
         return (
             <div>
                 <h3 className="my-3">Vehicle List</h3>

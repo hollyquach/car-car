@@ -22,5 +22,4 @@ export default function Manufacturers() {
             </table>
         </>
     )
-    console.log("MFGLIST::::::")
 }

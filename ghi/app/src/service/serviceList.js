@@ -60,7 +60,7 @@ export default function App() {
                 </thead>
                 <tbody>
                     {appts.map(appt => {
-                        if (appt.vip == true) {
+                        if (appt.vip === true) {
                             appt.vip = "⭐"
                         } else {
                             appt.vip = ""
@@ -77,8 +77,8 @@ export default function App() {
                                 <td>{appt.status}</td>
                                 <td>
                                     <div className="btn-group">
-                                        <button className="btn btn-success" onClick={() => changeStatus(appt.id, "FINISHED")} disabled={appt.status != "PENDING"}>Completed</button>
-                                        <button className="btn btn-danger" onClick={() => changeStatus(appt.id, "CANCELLED")} disabled={appt.status != "PENDING"}>Cancel</button>
+                                        <button className="btn btn-success btn-sm" onClick={() => changeStatus(appt.id, "FINISHED")} disabled={appt.status !== "PENDING"}>Finished</button>
+                                        <button className="btn btn-danger btn-sm" onClick={() => changeStatus(appt.id, "CANCELLED")} disabled={appt.status !== "PENDING"}>Cancel</button>
                                     </div>
                                 </td>
                             </tr>

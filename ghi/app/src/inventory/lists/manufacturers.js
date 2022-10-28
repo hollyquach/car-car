@@ -6,8 +6,12 @@ export default function Manufacturers() {
     const getData = async () => {
         const url = 'http://localhost:8100/api/manufacturers/'
         const response = await fetch(url);
-        let data = await response.json();
-        setMFGs(data.manufacturers);
+        if (response.ok) {
+            let data = await response.json();
+            setMFGs(data.manufacturers);
+        } else {
+            console.error("ERROR FETCHING MFGS DATA !!")    
+        }
     }
     useEffect(() => {getData()}, []);
 

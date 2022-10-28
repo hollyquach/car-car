@@ -33,7 +33,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <BrowserRouter>
-        <div className="container">
+        <div>
             <Routes>
                 <Route path="/" element={<App />} >
                     <Route index element={<MainPage />} />

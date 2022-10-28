@@ -9,9 +9,9 @@ import MainPage from './MainPage';
 import Inventory from './inventory/inventoryMain';
 import Manufacturers from './inventory/lists/manufacturers';
 import MfgForm from './inventory/forms/manufacturerForm';
-import VehicleModels from './inventory/lists/vehiclemodels'
+import VehicleList from './inventory/lists/vehiclemodels'
 import VehicleModelForm from './inventory/forms/vehicle';
-import Automobiles from './inventory/lists/vehiclemodels'
+import AutomobilesList from './inventory/lists/automobiles'
 import AutomobileForm from './inventory/forms/automobileForm';
 
 // SALES IMPORTS
@@ -41,9 +41,9 @@ root.render(
                         <Route index />
                         <Route path="manufacturers" element={<Manufacturers />} />
                         <Route path="manufacturers/new" element={<MfgForm />} />
-                        <Route path="models" element={<VehicleModels />} />
+                        <Route path="models" element={<VehicleList />} />
                         <Route path="models/new" element={<VehicleModelForm />} />
-                        <Route path="automobiles" element={<Automobiles />} />
+                        <Route path="automobiles" element={<AutomobilesList />} />
                         <Route path="automobiles/new" element={<AutomobileForm />} />
                     </Route>
 

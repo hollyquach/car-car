@@ -49,7 +49,7 @@ export default class ServiceForm extends React.Component {
         
         const response = await fetch(techUrl, fetchConfig);
         if (response.ok) {
-            const serviceappt = await response.json();
+            await response.json();
             
             // clear form
             const cleared = {

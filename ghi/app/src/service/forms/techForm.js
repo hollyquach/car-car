@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 /* Parameters for POST api_list_techs
 {
@@ -23,7 +23,7 @@ export default class TechForm extends React.Component {
         //override GET request
         e.preventDefault();
         const data = { ...this.state };
-        
+
         // define fetch parameters for POST request
         const techUrl = 'http://localhost:8080/api/techs/';
         const fetchConfig = {
@@ -33,10 +33,10 @@ export default class TechForm extends React.Component {
                 'Content-Type': 'application/json',
             },
         };
-        
+        console.log("passed FETCH:::", fetchConfig)
         const response = await fetch(techUrl, fetchConfig);
         if (response.ok) {
-            const technician = await response.json();
+            await response.json();
             
             // clear form
             const cleared = {

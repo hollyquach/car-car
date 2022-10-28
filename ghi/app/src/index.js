@@ -73,7 +73,7 @@ function None(props) {
     const navigate = useNavigate();
     // return for undefined path
     return (
-        <div class="alert alert-dark m-5 text-center" role="alert">
+        <div className="alert alert-dark m-5 text-center" role="alert">
             <h1>🙈🙈🙈</h1>
             <h3>nothing to see here!</h3>
             <p>broken link or something similar - please try another URL</p>

@@ -5,7 +5,9 @@ function App(props) {
   return (
     <>
       <Nav />
-      <Outlet />
+      <div className="container">
+        <Outlet />
+      </div>
     </>
   );
 }

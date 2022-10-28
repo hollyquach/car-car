@@ -33,13 +33,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <BrowserRouter>
-        <div className="container">
+        <div>
             <Routes>
                 <Route path="/" element={<App />} >
                     <Route index element={<MainPage />} />
-
                     <Route path="inventory" element={<Inventory />} >
-                        <Route index element={<main><h3>BLANK INDEX PAGE FOR INVENTORY</h3></main>} />
+                        <Route index />
                         <Route path="manufacturers" element={<Manufacturers />} />
                         <Route path="manufacturers/new" element={<MfgForm />} />
                         <Route path="models" element={<VehicleModels />} />

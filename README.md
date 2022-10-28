@@ -21,7 +21,7 @@ CarCar is a webapp to manage automobile inventory, sales records, & service appo
 ---
 
 ### Inventory<br>
-- With CarCar you can store all of your vehicles in one place!(and no there is not an overnight storage fee!) <br> Keep vins, makes, models, images, prices, colors and the year of each vehicle together so you no longer need to sift through reams of paper.
+- With CarCar you can store all of your vehicles in one place!(and no there is not an overnight storage fee!) <br> Keep vins, makes, models, images, colors and the year of each vehicle together so you no longer need to sift through reams of paper.
 ### Services
 - Have a mechanic business too?<br>
 CarCar will help you manage technicians, times of service, and services performed. This will be stored along side the cars information and the customer who brought it in. We know its a VIP if the car was in our inventory before.

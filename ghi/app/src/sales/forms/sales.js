@@ -92,6 +92,22 @@ class SalesForm extends React.Component {
         }
         if (automobileVOResponse.ok) {
             const automobileData = await automobileVOResponse.json();
+
+            const salesResponse = await fetch("http://localhost:8090/api/sales/");
+            if (salesResponse.ok) {
+                const salesData = await salesResponse.json();
+                const Sold = [];
+                for (let sold of salesData.sales) {
+                    Sold.push(sold.automobile.vin)
+                }
+                const notSold = [];
+                for (let unsold of salesData.autos) {
+                    if (!Sold.includes(unsold.vin)) {
+                        notSold.push(unsold)
+                    }
+                }
+                this.setState({ automobiles: notSold })
+            }
             this.setState({ automobiles: automobileData.autos });
         }
     }

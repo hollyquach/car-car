@@ -83,12 +83,12 @@ http://localhost:8100/api/models/ <br>
     ```{"name": "S800", "picture_url": "https://www.motortrend.com/uploads/sites/5/2020/04/1968-Honda-S800-Restomod-Danny-Wu-40.jpg", "manufacturer_id": 1}```
 
 - Input an Automobile
-![Automobile Input]()<br>
+![Automobile Input](ghi/app/src/images/Create new Automobile.png)<br>
 http://localhost:8100/api/automobiles/ <br>
     '''{"color": "red", "year": 2012, "vin": "1C3CC5FB2AN120174", "model_id": 1}'''
 
 - Input a Manufacturer
-![Manufacturer Input]()
+![Manufacturer Input](ghi/app/src/images/Create a Manufacturer.png)
 http://localhost:8100/api/manufacturers/ <br>
 
     ```{"name": "Honda"}```
@@ -102,29 +102,29 @@ http://localhost:8100/api/models/ <br>
 http://localhost:8100/api/automobiles/ <br>
 
 - Show a list of Manufacturers
-![Automobiles List]()
+![Automobiles List](ghi/app/src/images/Manufacturer list.png)
 http://localhost:8100/api/manufacturers/ <br>
 
 ### Services microservice
 
 - Enter a Technician
-![Technician]()
+![Technician](ghi/app/src/images/Create a Technician.png)
 http://localhost:8080/api/techs/ <br>
 
     ```{"name": "Kurt Lawrence", "employee_number": 40}```
 
 - Enter a Service Appointment
-![Service Appointment]()
+![Service Appointment](ghi/app/src/images/Create an Appointment.png)
 http://localhost:8080/api/services/ <br>
 
     ```{"vin": "ZHWUT4ZF6LLA14649", "owner": "Emilia Seay", "date_time": "2022-10-28 12:00", "tech": 30, "reason": "Tire rotation"}```
 
 - List of Scheduled Service Appointments
-![Scheduled Service Appointments]()
+![Scheduled Service Appointments](ghi/app/src/images/Service List.png)
 http://localhost:8080/api/services/ <br>
 
 - List of Service History on a Specific Vin
-![Service History]()
+![Service History](ghi/app/src/images/Service History.png)
 http://localhost:8080/api/services/1  <br>
 
 ### Sales microservice

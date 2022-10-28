@@ -77,7 +77,7 @@ class VehicleForm extends React.Component {
             <div className="row">
                 <div className="offset-3 col-6">
                     <div className="shadow p-4 mt-4">
-                        <h3>Create a Vehicle</h3>
+                        <h3>Create a Vehicle Model</h3>
                         <form onSubmit={this.handleSubmit} id="create-customer-form">
                             <div className="form-floating mb-3">
                                 <input onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" value={this.state.name} />
@@ -85,7 +85,7 @@ class VehicleForm extends React.Component {
                             </div>
                             <div className="form-floating mb-3">
                                 <input onChange={this.handlePictureUrlChange} placeholder="Picture url" required type="text" name="picture_url" id="picture_url" className="form-control" value={this.state.pictureUrl} />
-                                <label htmlFor="picture_url">Image</label>
+                                <label htmlFor="picture_url">Image URL</label>
                             </div>
                             <div className="mb-3">
                                 <select onChange={this.handleManufacturerIDChange} required name="manufactuer_id" id="manufactuer_id" className="form-select" value={this.state.manufacturerID}>

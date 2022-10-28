@@ -50,6 +50,8 @@ class SalesList extends React.Component {
                                 </tr>
                             );
                         })}
+                    </tbody>
+                </table>
             </div>
         );
     }

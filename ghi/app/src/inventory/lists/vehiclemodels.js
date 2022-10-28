@@ -5,25 +5,25 @@ class VehicleList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            autos: [],
+            models: [],
         }
     }
 
     async componentDidMount() {
-        const url = 'http://localhost:8100/api/automobiles';
+        const url = 'http://localhost:8100/api/models';
 
         const response = await fetch(url);
 
         if (response.ok) {
             const Data = await response.json();
             console.log("didmount", Data)
-            this.setState({ autos: Data.autos });
+            this.setState({ models: Data.models });
         }
     }
 
     render() {
         // if (Response.ok) {
-        if (this.state.autos === undefined) {
+        if (this.state.models === undefined) {
             return null;
         }
         console.log("Render", this.state)
@@ -39,13 +39,13 @@ class VehicleList extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.autos.map(automobile => {
+                        {this.state.models.map(automobile => {
                             return (
                                 <tr key={automobile.id}>
-                                    <td>{automobile.model.name}</td>
-                                    <td>{automobile.model.manufacturer.name}</td>
+                                    <td>{automobile.name}</td>
+                                    <td>{automobile.manufacturer.name}</td>
                                     <td>
-                                        <img src={automobile.model.picture_url} alt="car for sale" width="175px" />
+                                        <img src={automobile.picture_url} alt="car for sale" width="175px" />
                                     </td>
                                 </tr>
                             );

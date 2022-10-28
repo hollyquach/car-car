@@ -16,7 +16,6 @@ class AutomobilesList extends React.Component {
 
         if (response.ok) {
             const Data = await response.json();
-            console.log("didmount", Data)
             this.setState({ autos: Data.autos });
         }
     }
@@ -26,7 +25,6 @@ class AutomobilesList extends React.Component {
         if (this.state.autos === undefined) {
             return null;
         }
-        console.log("Render", this.state)
         return (
             <div>
                 <h3 className="my-3">Automobiles List</h3>

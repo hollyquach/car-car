@@ -50,11 +50,11 @@ CarCar will help you manage technicians, times of service, and services performe
 8. Take a load off and Enjoy, the hard work is over, now it's our turn!
 
 
-## Archetecture
+## Architecture
 
 ---
 
-### API Refrerence:
+### API Reference:
 ![api diagram](ghi/app/src/images/CarCarAPIs.png)
 
 ### Services - Docker
@@ -76,93 +76,128 @@ CarCar will help you manage technicians, times of service, and services performe
 ---
 
 ### Inventory
-- Input a Vehicle
+- Input a Manufacturer  
+![Manufacturer Input](ghi/app/src/images/Create a Manufacturer.png)
+http://localhost:8100/api/manufacturers/ <br>
+```json
+{
+    "name": "Honda"
+}
+```
+
+- Input a Vehicle  
 ![Vehicle Input](ghi/app/src/images/Create a Vehicle.png)
 http://localhost:8100/api/models/ <br>
 
-    ```{"name": "S800", "picture_url": "https://www.motortrend.com/uploads/sites/5/2020/04/1968-Honda-S800-Restomod-Danny-Wu-40.jpg", "manufacturer_id": 1}```
+```json
+{
+    "name": "S800",
+    "picture_url": "https://www.motortrend.com/uploads/sites/5/2020/04/1968-Honda-S800-Restomod-Danny-Wu-40.jpg",
+    "manufacturer_id": 1
+}
+```
 
-- Input an Automobile
+- Input an Automobile  
 ![Automobile Input](ghi/app/src/images/Create new Automobile.png)<br>
 http://localhost:8100/api/automobiles/ <br>
-    '''{"color": "red", "year": 2012, "vin": "1C3CC5FB2AN120174", "model_id": 1}'''
 
-- Input a Manufacturer
-![Manufacturer Input](ghi/app/src/images/Create a Manufacturer.png)
-http://localhost:8100/api/manufacturers/ <br>
+```json
+{
+    "color": "red",
+    "year": 2012,
+    "vin": "1C3CC5FB2AN120174",
+    "model_id": 1}
+```
 
-    ```{"name": "Honda"}```
-
-- Show a list of Vehicles
+- Show a list of Vehicles  
 ![Vehicle List](ghi/app/src/images/Vehicle List.png)
 http://localhost:8100/api/models/ <br>
 
-- Show a list of Automobiles
+- Show a list of Automobiles  
 ![Automobiles List](ghi/app/src/images/Automobile List.png)
 http://localhost:8100/api/automobiles/ <br>
 
-- Show a list of Manufacturers
+- Show a list of Manufacturers  
 ![Automobiles List](ghi/app/src/images/Manufacturer list.png)
 http://localhost:8100/api/manufacturers/ <br>
 
 ### Services microservice
 
-- Enter a Technician
+- Enter a Technician  
 ![Technician](ghi/app/src/images/Create a Technician.png)
 http://localhost:8080/api/techs/ <br>
 
-    ```{"name": "Kurt Lawrence", "employee_number": 40}```
+```json
+{
+    "name": "Kurt Lawrence",
+    "employee_number": 30
+}
+```
 
-- Enter a Service Appointment
+- Enter a Service Appointment  
 ![Service Appointment](ghi/app/src/images/Create an Appointment.png)
 http://localhost:8080/api/services/ <br>
 
-    ```{"vin": "ZHWUT4ZF6LLA14649", "owner": "Emilia Seay", "date_time": "2022-10-28 12:00", "tech": 30, "reason": "Tire rotation"}```
+```json
+{
+    "vin": "ZHWUT4ZF6LLA14649",
+    "owner": "Emilia Seay",
+    "date_time": "2022-10-28 12:00",
+    "tech": 30,
+    "reason": "Tire rotation"
+}
+```
 
-- List of Scheduled Service Appointments
+- List of Scheduled Service Appointments  
 ![Scheduled Service Appointments](ghi/app/src/images/Service List.png)
 http://localhost:8080/api/services/ <br>
 
-- List of Service History on a Specific Vin
+- List of Service History on a Specific Vin  
 ![Service History](ghi/app/src/images/Service History.png)
 http://localhost:8080/api/services/1  <br>
 
 ### Sales microservice
 
-- Add a Sales Rep
+- Add a Sales Rep  
 ![Sales Rep input](ghi/app/src/images/Create a Sales rep.png)
 http://localhost:8090/api/sales_rep/ <br>
 
-    '''{
+```json
+{
 	"name": "Nomar Norman",
 	"employee_id": "12"
-}'''
+}
+```
 
-- Add a Customer
+- Add a Customer  
 ![Customer Input](ghi/app/src/images/Create a Customer.png)
 http://localhost:8090/api/customer/ <br>
 
-    '''{
+```json
+{
   "name": "Bargain Bob",
 	"address": "123 Sesame St",
 	"phone_number": 5672347890
-}'''
+}
+```
 
-- Create a Sales Record
+- Create a Sales Record  
 ![Sales Record Input](ghi/app/src/images/Make a Sale.png)
 http://localhost:8090/api/sales/ <br>
 
-    '''{
+```json
+{
 	"total": 35000,
 	"sales_rep": 1,
 	"customer": 1,
 	"automobile_vo": 1
-}'''
+}
+```
 
-- Show a list of Sales
+- Show a list of Sales  
 ![Vehicle List](ghi/app/src/images/Sales History.png)
 http://localhost:8090/api/sales/ <br>
 
-- Show a Sales Reps Performance
+- Show a Sales Reps Performance  
 ![Automobiles List](ghi/app/src/images/Sales Rep History.png)
 http://localhost:8090/api/sales_rep_sales/1/ <br>

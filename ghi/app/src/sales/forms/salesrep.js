@@ -27,8 +27,8 @@ class SalesRepForm extends React.Component {
 
         const response = await fetch(salesRepUrl, fetchConfig);
         if (response.ok) {
-            const newSalesRep = await response.json();
-            console.log(newSalesRep); // is this one okay Holly?
+            await response.json();
+
 
             const cleared = {
                 name: '',

@@ -6,7 +6,7 @@ export default function Inventory() {
         <>
             <h1 className="text-center">Inventory</h1>
             <nav className="navbar-light">
-                <div class="container-fluid">
+                <div className="container-fluid">
                     <ul className="nav nav-tabs justify-content-end flex-column flex-sm-row">
                         <li className="nav-item p-1">
                             <NavLink className="nav-link" aria-current="page" to="/inventory/manufacturers">Manufacturers</NavLink>
@@ -34,4 +34,3 @@ export default function Inventory() {
         </>
     )
 }
-

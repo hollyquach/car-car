@@ -23,10 +23,8 @@ def get_automobiles():
 
 def poll():
     while True:
-        print('Service poller polling for data')
         try:
             get_automobiles()
-            print('Service poller:: successful')
         except Exception as e:
             print(e, file=sys.stderr)
         time.sleep(60)

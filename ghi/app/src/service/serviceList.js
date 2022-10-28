@@ -4,7 +4,7 @@ export default function ServiceList() {
     //> set state for list & get data
     const [appts, setAppts] = useState([]);
     const [searchVIN, setSearchVIN] = useState('');
-    const [searchBar, setSearchBar] = useState('');
+    const [displayAll, setDisplayAll] = useState(false);
 
     useEffect(() => {
         setSearchVIN('');
@@ -34,37 +34,35 @@ export default function ServiceList() {
     }
 
     //> handling getting data, includes logic with url parameter to filter list
-    const getData = async (params) => {
-        let urlParam = `/`
-        if (params !== undefined) {
-            urlParam = `?vin=${params.searchVIN}`
-        }
+    const getData = async () => {
         try {
-            let url = `http://localhost:8080/api/services${urlParam}`
+            const url = 'http://localhost:8080/api/services/'
             const response = await fetch(url);
             let data = await response.json();
-
-            if (data.Appointments.length === 0) {
-                url = 'http://localhost:8080/api/services/'
-                const response = await fetch(url);
-                data = await response.json();
-            }
             setAppts(data.Appointments);
         } catch {
             console.error("ERROR FETCH MFGS DATA !!")
         }
     }
 
+    const handleClear = () => {
+        setSearchVIN('');
+        setDisplayAll(false);
+    }
+
+    const handleSearch = () => {
+        setDisplayAll(true);
+    }
 
     //> list definition
     return (
         <div>
             <h3 className="my-3">Service Appointments</h3>
             <div className="input-group my-3">
-                <input type="text" name="search" className="form-control" value={searchBar} onChange={(event) => setSearchVIN(event.target.value) & setSearchBar(event.target.value)} />
+                <input type="text" name="search" className="form-control" value={searchVIN} onChange={(event) => setSearchVIN(event.target.value)} />
                 <div className="input-group-append">
-                    <button className="btn btn-secondary" onClick={() => getData({ searchVIN })}>Search</button>
-                    <button className="btn btn-secondary" onClick={() => { setSearchVIN(''); setSearchBar(''); getData() }}>Clear</button>
+                    <button className="btn btn-secondary" onClick={handleSearch}>Search</button>
+                    <button className="btn btn-secondary" onClick={handleClear}>Clear</button>
                 </div>
             </div>
             <table className="table table-striped">
@@ -77,11 +75,10 @@ export default function ServiceList() {
                         <th>Time</th>
                         <th>Technician</th>
                         <th>Reason</th>
-                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {appts.map(appt => {
+                    {appts.filter(appt => displayAll === true ? appt.vin === searchVIN : appt.status === "PENDING").map(appt => {
                         if (appt.vip === true) {
                             appt.vip = "⭐"
                         } else {
@@ -96,11 +93,10 @@ export default function ServiceList() {
                                 <td>{new Date(appt.date_time).toLocaleTimeString()}</td>
                                 <td>{appt.tech.name}</td>
                                 <td>{appt.reason}</td>
-                                <td>{appt.status}</td>
                                 <td>
                                     <div className="btn-group">
-                                        <button className="btn btn-success btn-sm" onClick={() => changeStatus(appt.id, "FINISHED")} disabled={appt.status !== "PENDING"}>Finished</button>
-                                        <button className="btn btn-danger btn-sm" onClick={() => changeStatus(appt.id, "CANCELLED")} disabled={appt.status !== "PENDING"}>Cancel</button>
+                                        <button className="btn btn-success btn-sm" onClick={() => changeStatus(appt.id, "FINISHED")}>Finished</button>
+                                        <button className="btn btn-danger btn-sm" onClick={() => changeStatus(appt.id, "CANCELLED")}>Cancel</button>
                                     </div>
                                 </td>
                             </tr>

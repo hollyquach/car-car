@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export default function ServiceList() {
-//> set state for list & get data
+    //> set state for list & get data
     const [appts, setAppts] = useState([]);
     const [searchVIN, setSearchVIN] = useState('');
     const [searchBar, setSearchBar] = useState('');
@@ -12,7 +12,7 @@ export default function ServiceList() {
     }, []);
 
 
-//> handling for list buttons to change status 
+    //> handling for list buttons to change status
     const changeStatus = async (id, status) => {
         const url = `http://localhost:8080/api/services/${id}/`
 
@@ -33,7 +33,7 @@ export default function ServiceList() {
         getData();
     }
 
-//> handling getting data, includes logic with url parameter to filter list
+    //> handling getting data, includes logic with url parameter to filter list
     const getData = async (params) => {
         let urlParam = `/`
         if (params !== undefined) {
@@ -43,7 +43,7 @@ export default function ServiceList() {
             let url = `http://localhost:8080/api/services${urlParam}`
             const response = await fetch(url);
             let data = await response.json();
-            
+
             if (data.Appointments.length === 0) {
                 url = 'http://localhost:8080/api/services/'
                 const response = await fetch(url);
@@ -61,10 +61,10 @@ export default function ServiceList() {
         <div>
             <h3 className="my-3">Service Appointments</h3>
             <div className="input-group my-3">
-                <input type="text" name="search" className="form-control" value={searchBar} onChange={(event) => setSearchVIN(event.target.value) & setSearchBar(event.target.value)}/>
+                <input type="text" name="search" className="form-control" value={searchBar} onChange={(event) => setSearchVIN(event.target.value) & setSearchBar(event.target.value)} />
                 <div className="input-group-append">
-                    <button className="btn btn-secondary" onClick={() => getData({searchVIN})}>Search</button>
-                    <button className="btn btn-secondary" onClick={() => {setSearchVIN(''); setSearchBar(''); getData()}}>Clear</button>
+                    <button className="btn btn-secondary" onClick={() => getData({ searchVIN })}>Search</button>
+                    <button className="btn btn-secondary" onClick={() => { setSearchVIN(''); setSearchBar(''); getData() }}>Clear</button>
                 </div>
             </div>
             <table className="table table-striped">

@@ -6,7 +6,7 @@ export default function Sales() {
         <>
             <h1 className="text-center">Sales</h1>
             <nav className="navbar-light">
-                <div class="container-fluid">
+                <div className="container-fluid">
                     <ul className="nav nav-tabs justify-content-end flex-column flex-sm-row">
                         <li className="nav-item p-2 ">
                             <NavLink className="nav-link" aria-current="page" to="/sales">Sales Records</NavLink>

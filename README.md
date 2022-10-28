@@ -1,8 +1,6 @@
 # CarCar
 ![Our logo](ghi/app/src/images/CCLW.png)
 
-CarCar is a webapp to manage automobile inventory, sales records, & service appointments for cars in a postgres database using an interactive react.js UI. Perfect for car dealerships!
-
 ---
 
 ## Team
@@ -14,7 +12,7 @@ CarCar is a webapp to manage automobile inventory, sales records, & service appo
 ---
 
 ![home page](ghi/app/src/images/CarCarHome.png)
-> [CarCar](http://localhost:3000/) was created as a streamlined solution for storing all of your clunkers and junkers! Do you have more cars than you can count? Have your friends mentioned you might have a problem? Well we have the solution for you, no, this is not an episode of hoarders! It's a comprehensive, easy to maintain car inventory, sales, and mechanic services web application.
+> [CarCar](http://localhost:3000/) was created as a streamlined solution for storing all of your clunkers and junkers! Do you have more cars than you can count? Have your friends mentioned you might have a problem? Well we have the solution for you, no, this is not an episode of hoarders! It's a comprehensive, easy to maintain car inventory, sales, and mechanic services management web application.
 
 ## Key Features
 
@@ -22,10 +20,10 @@ CarCar is a webapp to manage automobile inventory, sales records, & service appo
 
 ### Inventory<br>
 - With CarCar you can store all of your vehicles in one place!(and no there is not an overnight storage fee!) <br> Keep vins, makes, models, images, colors and the year of each vehicle together so you no longer need to sift through reams of paper.
-### Services
+### Services<br>
 - Have a mechanic business too?<br>
 CarCar will help you manage technicians, times of service, and services performed. This will be stored along side the cars information and the customer who brought it in. We know its a VIP if the car was in our inventory before.
-### Sales
+### Sales<br>
 - ...But wait, there's more!<br>Easily keep track of employees, sales, and yes, even employee's sales. Get rid of that old Incorruptible Cashier and subscribe to CarCar! (only $45.99 a month or save money with our yearly subscription $535/year)
 
 
@@ -80,10 +78,19 @@ CarCar will help you manage technicians, times of service, and services performe
 ### Inventory
 - Input a Vehicle
 ![Vehicle Input](ghi/app/src/images/Create a Vehicle.png)
+
+    ```{"name": "S800", "picture_url": "https://www.motortrend.com/uploads/sites/5/2020/04/1968-Honda-S800-Restomod-Danny-Wu-40.jpg", "manufacturer_id": 1}```
+
 - Input an Automobile
-![Automobile Input]()
+![Automobile Input]()<br>
+
+    '''{"color": "red", "year": 2012, "vin": "1C3CC5FB2AN120174", "model_id": 1}'''
+
 - Input a Manufacturer
 ![Manufacturer Input]()
+
+    ```{"name": "Honda"}```
+
 - Show a list of Vehicles
 ![Vehicle List](ghi/app/src/images/Vehicle List.png)
 - Show a list of Automobiles
@@ -100,10 +107,31 @@ microservice, here.
 
 - Add a Sales Rep
 ![Sales Rep input](ghi/app/src/images/Create a Sales rep.png)
+
+    '''{
+	"name": "Nomar Norman",
+	"employee_id": "12"
+}'''
+
 - Add a Customer
 ![Customer Input](ghi/app/src/images/Create a Customer.png)
+
+    '''{
+  "name": "Bargain Bob",
+	"address": "123 Sesame St",
+	"phone_number": 5672347890
+}'''
+
 - Create a Sales Record
 ![Sales Record Input](ghi/app/src/images/Make a Sale.png)
+
+    '''{
+	"total": 35000,
+	"sales_rep": 1,
+	"customer": 1,
+	"automobile_vo": 1
+}'''
+
 - Show a list of Sales
 ![Vehicle List](ghi/app/src/images/Sales History.png)
 - Show a Sales Reps Performance

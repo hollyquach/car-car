@@ -76,60 +76,61 @@ CarCar will help you manage technicians, times of service, and services performe
 ---
 
 ### Inventory
-- Input a Vehicle
+- Input a Vehicle<br>
 ![Vehicle Input](ghi/app/src/images/Create a Vehicle.png)
 http://localhost:8100/api/models/ <br>
 
     ```{"name": "S800", "picture_url": "https://www.motortrend.com/uploads/sites/5/2020/04/1968-Honda-S800-Restomod-Danny-Wu-40.jpg", "manufacturer_id": 1}```
 
-- Input an Automobile
+- Input an Automobile<br>
 ![Automobile Input](ghi/app/src/images/Create new Automobile.png)<br>
 http://localhost:8100/api/automobiles/ <br>
+
     '''{"color": "red", "year": 2012, "vin": "1C3CC5FB2AN120174", "model_id": 1}'''
 
-- Input a Manufacturer
+- Input a Manufacturer<br>
 ![Manufacturer Input](ghi/app/src/images/Create a Manufacturer.png)
 http://localhost:8100/api/manufacturers/ <br>
 
     ```{"name": "Honda"}```
 
-- Show a list of Vehicles
+- Show a list of Vehicles<br>
 ![Vehicle List](ghi/app/src/images/Vehicle List.png)
 http://localhost:8100/api/models/ <br>
 
-- Show a list of Automobiles
+- Show a list of Automobiles<br>
 ![Automobiles List](ghi/app/src/images/Automobile List.png)
 http://localhost:8100/api/automobiles/ <br>
 
-- Show a list of Manufacturers
+- Show a list of Manufacturers<br>
 ![Automobiles List](ghi/app/src/images/Manufacturer list.png)
 http://localhost:8100/api/manufacturers/ <br>
 
 ### Services microservice
 
-- Enter a Technician
+- Enter a Technician<br>
 ![Technician](ghi/app/src/images/Create a Technician.png)
 http://localhost:8080/api/techs/ <br>
 
     ```{"name": "Kurt Lawrence", "employee_number": 40}```
 
-- Enter a Service Appointment
+- Enter a Service Appointment<br>
 ![Service Appointment](ghi/app/src/images/Create an Appointment.png)
 http://localhost:8080/api/services/ <br>
 
     ```{"vin": "ZHWUT4ZF6LLA14649", "owner": "Emilia Seay", "date_time": "2022-10-28 12:00", "tech": 30, "reason": "Tire rotation"}```
 
-- List of Scheduled Service Appointments
+- List of Scheduled Service Appointments<br>
 ![Scheduled Service Appointments](ghi/app/src/images/Service List.png)
 http://localhost:8080/api/services/ <br>
 
-- List of Service History on a Specific Vin
+- List of Service History on a Specific Vin<br>
 ![Service History](ghi/app/src/images/Service History.png)
 http://localhost:8080/api/services/1  <br>
 
 ### Sales microservice
 
-- Add a Sales Rep
+- Add a Sales Rep<br>
 ![Sales Rep input](ghi/app/src/images/Create a Sales rep.png)
 http://localhost:8090/api/sales_rep/ <br>
 
@@ -138,7 +139,7 @@ http://localhost:8090/api/sales_rep/ <br>
 	"employee_id": "12"
 }'''
 
-- Add a Customer
+- Add a Customer<br>
 ![Customer Input](ghi/app/src/images/Create a Customer.png)
 http://localhost:8090/api/customer/ <br>
 
@@ -148,7 +149,7 @@ http://localhost:8090/api/customer/ <br>
 	"phone_number": 5672347890
 }'''
 
-- Create a Sales Record
+- Create a Sales Record<br>
 ![Sales Record Input](ghi/app/src/images/Make a Sale.png)
 http://localhost:8090/api/sales/ <br>
 
@@ -159,10 +160,10 @@ http://localhost:8090/api/sales/ <br>
 	"automobile_vo": 1
 }'''
 
-- Show a list of Sales
+- Show a list of Sales<br>
 ![Vehicle List](ghi/app/src/images/Sales History.png)
 http://localhost:8090/api/sales/ <br>
 
-- Show a Sales Reps Performance
+- Show a Sales Reps Performance<br>
 ![Automobiles List](ghi/app/src/images/Sales Rep History.png)
 http://localhost:8090/api/sales_rep_sales/1/ <br>

@@ -102,7 +102,7 @@ class SalesForm extends React.Component {
             <div className="row">
                 <div className="offset-3 col-6">
                     <div className="shadow p-4 mt-4">
-                        <h1>Make a Sale</h1>
+                        <h3>Make a Sale</h3>
                         <form onSubmit={this.handleSubmit} id="create-sales-form">
                             <div className="form-floating mb-3">
                                 <input onChange={this.handleTotalChange} placeholder="Total" required type="number" name="total" id="total" className="form-control" value={this.state.total} />

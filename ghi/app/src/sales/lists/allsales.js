@@ -25,10 +25,9 @@ class SalesList extends React.Component {
         if (this.state.sales === undefined) {
             return null;
         }
-        console.log("HERE", this.state)
         return (
             <div>
-                <h1>Sales History</h1>
+                <h3 className="my-3">Sales History</h3>
                 <table className="table table-striped">
                     <thead>
                         <tr>

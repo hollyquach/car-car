@@ -12,7 +12,7 @@ export default function Sales() {
                             <NavLink className="nav-link" aria-current="page" to="/sales">Sales Records</NavLink>
                         </li>
                         <li className="nav-item p-2">
-                            <NavLink className="nav-link" aria-current="page" to="/sales/:salesrepid">Sales by Rep(BROKEN)</NavLink>
+                            <NavLink className="nav-link" aria-current="page" to="/sales/history">Sales by Rep</NavLink>
                         </li>
                         <li className="nav-item dropdown p-2">
                             <NavLink className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

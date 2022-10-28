@@ -17,7 +17,7 @@ import AutomobileForm from './inventory/forms/automobileForm';
 // SALES IMPORTS
 import Sales from './sales/salesMain';
 import SalesList from './sales/lists/allsales';
-// import SalesRepSales from './sales/lists/salesrepsales';
+import SalesRepSales from './sales/lists/salesrepsales';
 import CustomerForm from './sales/forms/customer';
 import SalesRepForm from './sales/forms/salesrep';
 import SalesForm from './sales/forms/sales';
@@ -50,7 +50,7 @@ root.render(
 
                     <Route path="sales" element={<Sales />} >
                         <Route index element={<SalesList />} />
-                        {/* <Route path=":salesrepid" element={<SalesRepSales />} /> */}
+                        <Route path="history/" element={<SalesRepSales />} />
                         <Route path="customer/new" element={<CustomerForm />} />
                         <Route path="rep/new" element={<SalesRepForm />} />
                         <Route path="record/new" element={<SalesForm />} />
@@ -77,7 +77,7 @@ function None(props) {
             <h1>🙈🙈🙈</h1>
             <h3>nothing to see here!</h3>
             <p>broken link or something similar - please try another URL</p>
-            <button className="btn btn-primary" onClick={() => navigate(-1)}>Go back</button>
+            <button className="btn btn-secondary" onClick={() => navigate(-1)}>Go back</button>
         </div>
     );
 }

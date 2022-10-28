@@ -29,7 +29,7 @@ class AutomobilesList extends React.Component {
         console.log("Render", this.state)
         return (
             <div>
-                <h1>Automobiles List</h1>
+                <h3 className="my-3">Automobiles List</h3>
                 <table className="table table-striped">
                     <thead>
                         <tr>

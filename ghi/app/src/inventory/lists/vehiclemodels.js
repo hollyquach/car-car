@@ -24,12 +24,12 @@ class VehicleList extends React.Component {
     render() {
         // if (Response.ok) {
         if (this.state.autos === undefined) {
-            return null;
+            this.state.autos = []
         }
         console.log("Render", this.state)
         return (
             <div>
-                <h1>Vehicle List</h1>
+                <h3 className="my-3">Vehicle List</h3>
                 <table className="table table-striped hover">
                     <thead className="thead-dark">
                         <tr>

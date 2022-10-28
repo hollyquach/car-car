@@ -43,7 +43,7 @@ class SalesRepSalesList extends React.Component {
         console.log("render", this.state.sales)
         return (
             <div className="shadow p-4 mt-4">
-                <h1>Sales Rep History</h1>
+                <h3 className="my-3">Sales Rep History</h3>
                 <form id="create-sales-form">
                     <div className="mb-3">
                         <select onChange={this.handleSalesRepChange} required name="sales_rep" id="sales_rep" className="form-select" value={this.state.salesRep}>
@@ -59,7 +59,7 @@ class SalesRepSalesList extends React.Component {
                     </div>
                     {/* <button className="btn btn-primary">Select</button> */}
                 </form>
-                <h1>Sales History</h1>
+                <h3 className="my-3">Sales History</h3>
                 <table className="table table-striped">
                     <thead>
                         <tr>

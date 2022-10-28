@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 export default function App() {
-    //> set state for list & get data
+//> set state for list & get data
     const [appts, setAppts] = useState([]);
     useEffect(() => { getData() }, [])
 
 
-    //> handling for list buttons to change status 
+//> handling for list buttons to change status 
     const changeStatus = async (id, status) => {
         const url = `http://localhost:8080/api/services/${id}/`
 
@@ -28,7 +28,7 @@ export default function App() {
     }
 
 
-    //> pull data & set state for list
+//> pull data & set state for list
     const getData = async () => {
         const apptsURL = 'http://localhost:8080/api/services/'
         const response = await fetch(apptsURL);
@@ -44,6 +44,7 @@ export default function App() {
     //> list definition
     return (
         <div>
+            <h3 className="my-3">Service Appointments</h3>
             <table className="table table-striped">
                 <thead>
                     <tr>

@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-export default function App() {
+export default function ServiceList() {
 //> set state for list & get data
     const [appts, setAppts] = useState([]);
-    useEffect(() => { getData() }, [])
+    const [searchVIN, setSearchVIN] = useState('');
+    const [searchBar, setSearchBar] = useState('');
+
+    useEffect(() => {
+        setSearchVIN('');
+        getData()
+    }, []);
 
 
 //> handling for list buttons to change status 
@@ -27,17 +33,23 @@ export default function App() {
         getData();
     }
 
-
-//> pull data & set state for list
-    const getData = async () => {
-        const apptsURL = 'http://localhost:8080/api/services/'
-        const response = await fetch(apptsURL);
-        if (response.ok) {
-            const data = await response.json();
-            setAppts(data.Appointments);
-        } else {
-            console.log("SERVICE TECH DATA FETCH ERROR")
+//> handling getting data, includes logic with url parameter to filter list
+    const getData = async (params) => {
+        let urlParam = `/`
+        if (params !== undefined) {
+            urlParam = `?vin=${params.searchVIN}`
         }
+        let url = `http://localhost:8080/api/services${urlParam}`
+        console.log("URL:::", url)
+        const response = await fetch(url);
+        let data = await response.json();
+        
+        if (data.Appointments.length === 0) {
+            url = 'http://localhost:8080/api/services/'
+            const response = await fetch(url);
+            data = await response.json();
+        }
+        setAppts(data.Appointments);
     }
 
 
@@ -45,6 +57,13 @@ export default function App() {
     return (
         <div>
             <h3 className="my-3">Service Appointments</h3>
+            <div className="input-group my-3">
+                <input type="text" name="search" className="form-control" value={searchBar} onChange={(event) => setSearchVIN(event.target.value) & setSearchBar(event.target.value)}/>
+                <div className="input-group-append">
+                    <button className="btn btn-secondary" onClick={() => getData({searchVIN})}>Search</button>
+                    <button className="btn btn-secondary" onClick={() => {setSearchVIN(''); setSearchBar(''); getData()}}>Clear</button>
+                </div>
+            </div>
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -60,7 +79,7 @@ export default function App() {
                 </thead>
                 <tbody>
                     {appts.map(appt => {
-                        if (appt.vip == true) {
+                        if (appt.vip === true) {
                             appt.vip = "⭐"
                         } else {
                             appt.vip = ""
@@ -77,8 +96,8 @@ export default function App() {
                                 <td>{appt.status}</td>
                                 <td>
                                     <div className="btn-group">
-                                        <button className="btn btn-success" onClick={() => changeStatus(appt.id, "FINISHED")} disabled={appt.status != "PENDING"}>Completed</button>
-                                        <button className="btn btn-danger" onClick={() => changeStatus(appt.id, "CANCELLED")} disabled={appt.status != "PENDING"}>Cancel</button>
+                                        <button className="btn btn-success btn-sm" onClick={() => changeStatus(appt.id, "FINISHED")} disabled={appt.status !== "PENDING"}>Finished</button>
+                                        <button className="btn btn-danger btn-sm" onClick={() => changeStatus(appt.id, "CANCELLED")} disabled={appt.status !== "PENDING"}>Cancel</button>
                                     </div>
                                 </td>
                             </tr>
@@ -88,5 +107,4 @@ export default function App() {
             </table>
         </div>
     );
- 
 }

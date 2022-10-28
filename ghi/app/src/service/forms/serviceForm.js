@@ -114,20 +114,24 @@ export default class ServiceForm extends React.Component {
                         <h3>Create new service appointment</h3>
                         <form onSubmit={this.handleSubmit} id="create-service-form" >
                             <div className="form-floating mb-3">
-                                <input placeholder="Date & Time" required type="datetime-local" className="date_time" value={this.state.date_time} onChange={this.handleDateTimeChange}/>
+                                <input placeholder="Appointment Date & Time" required type="datetime-local" className="form-control" value={this.state.date_time} onChange={this.handleDateTimeChange}/>
+                                <label htmlFor="date_time">Appointment Date & Time</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input placeholder="Customer Name" required type="text" className="owner" value={this.state.owner} onChange={this.handleOwnerChange}/>
+                                <input placeholder="Customer Name" required type="text" className="form-control" value={this.state.owner} onChange={this.handleOwnerChange}/>
+                                <label htmlFor="owner">Customer Name</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input placeholder="Vehicle ID Number (VIN)" required type="text" className="vin" value={this.state.vin} onChange={this.handleVINChange}/>
+                                <input placeholder="VIN" required type="text" className="form-control" value={this.state.vin} onChange={this.handleVINChange}/>
+                                <label htmlFor="vin">Vehicle Identification Number (VIN)</label>
                             </div>
-                            <div className="form-floating mb-3 col-auto">
-                                <textarea placeholder="Reason for service" required className="reason" value={this.state.reason} onChange={this.handleReasonChange} rows="4"/>
+                            <div className="form-floating mb-3">
+                                <textarea placeholder="Reason for Service" required className="form-control" value={this.state.reason} onChange={this.handleReasonChange} rows="10"/>
+                                <label htmlFor="reason">Reason for Service</label>
                             </div>
-                            <div className="form-floating mb-3 col-auto" >
-                                <select required className="tech" value={this.state.tech} onChange={this.handleTechChange} >
-                                    <option value="">Service Tech</option>
+                            <div className="form-floating mb-3" >
+                                <select required className="form-control" value={this.state.tech} onChange={this.handleTechChange} >
+                                    <option value=''>Select Service Tech</option>
                                     {this.state.techs.map(tech => {
                                         return (
                                             <option key={tech.employee_number} value={tech.employee_number}>

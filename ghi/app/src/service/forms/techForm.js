@@ -73,10 +73,12 @@ export default class TechForm extends React.Component {
                         <h3>Create new service technician</h3>
                         <form onSubmit={this.handleSubmit} id="create-technician-form" >
                             <div className="form-floating mb-3">
-                                <input placeholder="Name" required type="text" className="name" value={this.state.name} onChange={this.handleNameChange}/>
+                                <input placeholder="Name" required type="text" className="form-control" value={this.state.name} onChange={this.handleNameChange}/>
+                                <label htmlFor="name">Name</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input placeholder="Employee #" required type="text" className="employee_number" value={this.state.employee_number} onChange={this.handleNumberChange}/>
+                                <input placeholder="Name" required type="text" className="form-control" value={this.state.employee_number} onChange={this.handleNumberChange}/>
+                                <label htmlFor="employee_number">Employee Number</label>
                             </div>
                             <button className="btn btn-primary">Create</button>
                         </form>

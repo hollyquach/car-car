@@ -16,7 +16,8 @@ export default function Manufacturers() {
     useEffect(() => {getData()}, []);
 
     return (
-        <><h3 className="my-3">Manufacturers List</h3>
+        <>
+            <h3 className="my-3">Manufacturers List</h3>
             <table className="table table-striped">
                 <thead>
                     <tr>

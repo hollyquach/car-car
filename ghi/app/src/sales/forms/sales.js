@@ -95,15 +95,18 @@ class SalesForm extends React.Component {
 
             const salesResponse = await fetch("http://localhost:8090/api/sales/");
             if (salesResponse.ok) {
-                const salesData = await salesResponse.json();
                 const Sold = [];
-                for (let sold of salesData.sales) {
-                    Sold.push(sold.automobile.vin)
-                }
                 const notSold = [];
-                for (let unsold of salesData.autos) {
-                    if (!Sold.includes(unsold.vin)) {
-                        notSold.push(unsold)
+                const salesData = await salesResponse.json();
+                console.log(salesData)
+                console.log("sold", Sold)
+                console.log("not sold", notSold)
+                for (let automobile of salesData.sales) {
+                    Sold.push(automobile.automobile_vo.vin)
+                }
+                for (let vehicle of salesData.sales) {
+                    if (!Sold.includes(vehicle.vin)) {
+                        notSold.push(vehicle)
                     }
                 }
                 this.setState({ automobiles: notSold })

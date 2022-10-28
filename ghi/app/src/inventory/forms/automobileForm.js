@@ -82,41 +82,37 @@ export default class AutomobileForm extends React.Component {
 
     render() {
         return (
-            <div className="my-5 container">
-                <div className="row">
-                    <div className="col">
-                        <div className="card shadow">
-                            <div className="card-body">
-                                <form onSubmit={this.handleSubmit} className="form" id="create-automobile-form">
-                                    <h3 className="card-title">Create new Automobile</h3>
-                                    <div className="mb-3">
-                                        <select name="model" required className="form-control" value={this.state.model_id} onChange={this.handleModelChange} >
-                                            <option value=''>Choose a model</option>
-                                            {this.state.modelopts.map(opt => {
-                                                return (
-                                                    <option key={opt.id} value={opt.id}>
-                                                        {opt.name}
-                                                    </option>
-                                                );
-                                            })}
-                                        </select>
-                                    </div>
-                                    <div className="form-floating mb-3">
-                                        <input placeholder="Year" name="year" required type="number" className="form-control" value={this.state.year} onChange={this.handleYearChange}/>
-                                        <label htmlFor="year">Year</label>
-                                    </div>
-                                    <div className="form-floating mb-3">
-                                        <input placeholder="Color" name="color" required type="text" className="form-control" value={this.state.color} onChange={this.handleColorChange}/>
-                                        <label htmlFor="color">Color</label>
-                                    </div>
-                                    <div className="form-floating mb-3">
-                                        <input placeholder="VIN" name="vin" required type="text" className="form-control" value={this.state.vin} onChange={this.handleVINChange}/>
-                                        <label htmlFor="vin">Vehicle Identification Number (VIN)</label>
-                                    </div>
-                                    <button className="btn btn-primary">Create</button>
-                                </form>
+            <div className="row">
+                <div className="offset-3 col-6">
+                    <div className="shadow p-4 mt-4">
+                        <h3 className="card-title">Create new Automobile</h3>
+                        <form onSubmit={this.handleSubmit} className="form" id="create-automobile-form">
+                            <div className="mb-3">
+                                <select name="model" required className="form-control" value={this.state.model_id} onChange={this.handleModelChange} >
+                                    <option value=''>Choose a model</option>
+                                    {this.state.modelopts.map(opt => {
+                                        return (
+                                            <option key={opt.id} value={opt.id}>
+                                                {opt.name}
+                                            </option>
+                                        );
+                                    })}
+                                </select>
                             </div>
-                        </div>
+                            <div className="form-floating mb-3">
+                                <input placeholder="Year" name="year" required type="number" className="form-control" value={this.state.year} onChange={this.handleYearChange}/>
+                                <label htmlFor="year">Year</label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input placeholder="Color" name="color" required type="text" className="form-control" value={this.state.color} onChange={this.handleColorChange}/>
+                                <label htmlFor="color">Color</label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input placeholder="VIN" name="vin" required type="text" className="form-control" value={this.state.vin} onChange={this.handleVINChange}/>
+                                <label htmlFor="vin">Vehicle Identification Number (VIN)</label>
+                            </div>
+                            <button className="btn btn-primary">Create</button>
+                        </form>
                     </div>
                 </div>
             </div>

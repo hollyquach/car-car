@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function App() {
+export default function ServiceList() {
 //> set state for list & get data
     const [appts, setAppts] = useState([]);
     useEffect(() => { getData() }, [])

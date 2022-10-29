@@ -110,7 +110,6 @@ class SalesForm extends React.Component {
                 }
                 this.setState({ automobiles: notSold })
             }
-            // this.setState({ automobiles: automobileData.autos });
         }
     }
 

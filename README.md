@@ -135,8 +135,7 @@ CarCar will help you manage technicians, times of service, and services performe
 
 ---
 
-### Inventory
-- `http://localhost:8100/`
+### Inventory | `http://localhost:8100/`
 
 
 #### `api/manufacturers/`
@@ -162,8 +161,8 @@ CarCar will help you manage technicians, times of service, and services performe
 ```
 
 #### `api/manufacturers/:id/`
-`GET` | returns the details for the vehicle model 
-`PUT` | updates the properties of a vehicle model
+`GET` | returns the details for the vehicle model   
+`PUT` | updates the properties of a vehicle model  
 `DELETE` | deletes the instance of vehicle model
 
 #### `api/models/`
@@ -197,8 +196,8 @@ CarCar will help you manage technicians, times of service, and services performe
 ```
 
 #### `api/models/:id/`
-`GET` | returns the details for the vehicle model 
-`PUT` | updates the properties of a vehicle model
+`GET` | returns the details for the vehicle model   
+`PUT` | updates the properties of a vehicle model  
 `DELETE` | deletes the instance of vehicle model
 
 #### `api/automobiles/`
@@ -239,14 +238,13 @@ CarCar will help you manage technicians, times of service, and services performe
 ```
 
 #### `api/models/:vin/`
-`GET` | returns the details for the vehicle model 
-`PUT` | updates the properties of a vehicle model
-`DELETE` | deletes the instance of vehicle model
+`GET` | returns the details for the vehicle model   
+`PUT` | updates the properties of a vehicle model  
+`DELETE` | deletes the instance of vehicle model  
 
 ---
 
-### Service
-- `http://localhost:8080/`
+### Service | `http://localhost:8080/`
 #### `api/techs/`
 `GET` | returns a dictionary with a list of technicians
 ````json
@@ -339,8 +337,7 @@ CarCar will help you manage technicians, times of service, and services performe
 
 ---
 
-### Sales
-- `http://localhost:8090/`
+### Sales | `http://localhost:8090/`
 
 #### `api/sales_rep/`
 `GET` | returns a dictionary with a list of service reps
@@ -355,7 +352,7 @@ CarCar will help you manage technicians, times of service, and services performe
         ...
     ]
 }
-
+```
 
 `POST` | creates a new service rep
 ```json

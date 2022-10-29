@@ -1,11 +1,14 @@
-# CarCar
 ![Our logo](ghi/app/src/images/CCLW.png)
+
+
+## Car Car Team
 
 ---
 
-## Team
 * Lewey - Sales
 * Holly- Services
+
+
 
 ## Overview
 
@@ -20,12 +23,16 @@
 
 ### Inventory<br>
 - With CarCar you can store all of your vehicles in one place!(and no there is not an overnight storage fee!) <br> Keep vins, makes, models, images, colors and the year of each vehicle together so you no longer need to sift through reams of paper.
+![Vehicle List](ghi/app/src/images/InvAutomobileList.png)
+
 ### Services<br>
 - Have a mechanic business too?<br>
 CarCar will help you manage technicians, times of service, and services performed. This will be stored along side the cars information and the customer who brought it in. We know its a VIP if the car was in our inventory before.
+![Scheduled Service Appointments](ghi/app/src/images/ServiceList.png)
+
 ### Sales<br>
 - ...But wait, there's more!<br>Easily keep track of employees, sales, and yes, even employee's sales. Get rid of that old Incorruptible Cashier and subscribe to CarCar! (only $45.99 a month or save money with our yearly subscription $535/year)
-
+![Sales History](ghi/app/src/images/SalesList.png)
 
 ## How To Run It
 
@@ -43,19 +50,66 @@ CarCar will help you manage technicians, times of service, and services performe
 2. Change to project diectory:<br>`cd project-beta`
 3. Open project<br>`code .`
 4. Open Docker app
-5. Open VSCode terminal  to top level directory<br>`control + \` `
+5. Open VSCode terminal  to top level directory<br>`control + \`
 6. Build docker containers & run:<br>
     `docker-compose up --build`
 7. Open in a browser<br> [http://localhost:3000/](http://localhost:3000/)
-8. Take a load off and Enjoy, the hard work is over, now it's our turn!
+8. Take a load off and Enjoy, the hard work is over, now it's our turn!  
+
+
+
+## Additional Features
+
+---
+
+### Inventory<br>
+- Add a Manufacturer  
+![Manufacturer Input](ghi/app/src/images/Create a Manufacturer.png)
+
+- Add a Vehicle Model  
+![Vehicle Input](ghi/app/src/images/Create a Vehicle.png)
+
+- Add an Automobile  
+![Automobile Input](ghi/app/src/images/Create new Automobile.png)
+
+- Show a list of Manufacturers  
+![Automobiles List](ghi/app/src/images/InvMFGList.png)
+
+- Show a list of Vehicle Models  
+![Vehicle List](ghi/app/src/images/InvModelsList.png)
+
+
+### Services<br>
+- Add a Service Technician  
+![Technician](ghi/app/src/images/Create a Technician.png)
+
+- Create a Service Appointment  
+![Service Appointment](ghi/app/src/images/Create an Appointment.png)
+
+- Search Service History by VIN  
+![Service History](ghi/app/src/images/ServiceHistory.png)
+
+### Sales<br>
+- Add a Sales Rep  
+![Sales Rep input](ghi/app/src/images/Create a Sales rep.png)
+
+- Add a Customer 
+![Make a Sales Record](ghi/app/src/images/Create a Customer.png)
+
+- Create a Sales Record  
+![Customer Input](ghi/app/src/images/Make a Sale.png)
+
+- Show a Sales Reps Performance  
+![Automobiles List](ghi/app/src/images/SalesbyRepList.png)
+
+
+
 
 
 ## Architecture
 
 ---
 
-### API Reference:
-![api diagram](ghi/app/src/images/CarCarAPIs.png)
 
 ### Services - Docker
 | Service | Image | Notes |
@@ -71,24 +125,68 @@ CarCar will help you manage technicians, times of service, and services performe
 | sales-api | project-beta-sales-api | ports: 8090:8000 |
 | sales-poller | project-beta-sales-poller |  |
 
-## Design
+### API Reference
 
 ---
 
-### Inventory
-- Input a Manufacturer  
-![Manufacturer Input](ghi/app/src/images/Create a Manufacturer.png)
-http://localhost:8100/api/manufacturers/ <br>
+![api diagram](ghi/app/src/images/CarCarAPIs.png)
+
+### API Endpoints
+
+---
+
+### Inventory | `http://localhost:8100/`
+
+
+#### `api/manufacturers/`
+`GET` | returns a dictionary with a list of vehicle manufacturers
+```json
+{
+	"manufacturers": [
+		{
+			"href": URL for manufacturer,
+			"id": database id for the manufacturer,
+			"name": manufacturer's name
+		},
+        ...
+    ]
+}
+```
+
+`POST` | creates a new manufacturer
 ```json
 {
     "name": "Honda"
 }
 ```
 
-- Input a Vehicle  
-![Vehicle Input](ghi/app/src/images/Create a Vehicle.png)
-http://localhost:8100/api/models/ <br>
+#### `api/manufacturers/:id/`
+`GET` | returns the details for the vehicle model   
+`PUT` | updates the properties of a vehicle model  
+`DELETE` | deletes the instance of vehicle model
 
+#### `api/models/`
+`GET` | returns a dictionary with a list of vehicle models
+```json
+{
+	"models": [
+		{
+			"href": URL for model,,
+			"id": database id for the model
+			"name": model's name
+			"picture_url": URL for image of the model,
+			"manufacturer": {
+                "href": URL for manufacturer,
+                "id": database id for the manufacturer,
+                "name": manufacturer's name
+			}
+		},
+        ...
+    ]
+}
+```
+
+`POST` | creates a new vehicle model
 ```json
 {
     "name": "S800",
@@ -97,10 +195,40 @@ http://localhost:8100/api/models/ <br>
 }
 ```
 
-- Input an Automobile  
-![Automobile Input](ghi/app/src/images/Create new Automobile.png)<br>
-http://localhost:8100/api/automobiles/ <br>
+#### `api/models/:id/`
+`GET` | returns the details for the vehicle model   
+`PUT` | updates the properties of a vehicle model  
+`DELETE` | deletes the instance of vehicle model
 
+#### `api/automobiles/`
+`GET` | returns a dictionary with a list of automobiles
+```json
+{
+	"autos": [
+		{
+			"href": "/api/automobiles/JF1VA2R6XK9828079/",
+			"id": 1,
+			"color": "Gray",
+			"year": 2021,
+			"vin": "JF1VA2R6XK9828079",
+			"model": {
+                "href": URL for model,,
+                "id": database id for the model
+                "name": mmodel's name
+                "picture_url": URL for image of the model,
+                "manufacturer": {
+                    "href": URL for manufacturer,
+                    "id": database id for the manufacturer,
+                    "name": manufacturer's name
+                }
+		    },
+		},
+        ...
+    ]
+}
+```
+
+`POST` | creates a new automobile
 ```json
 {
     "color": "red",
@@ -109,24 +237,30 @@ http://localhost:8100/api/automobiles/ <br>
     "model_id": 1}
 ```
 
-- Show a list of Vehicles  
-![Vehicle List](ghi/app/src/images/Vehicle List.png)
-http://localhost:8100/api/models/ <br>
+#### `api/models/:vin/`
+`GET` | returns the details for the vehicle model   
+`PUT` | updates the properties of a vehicle model  
+`DELETE` | deletes the instance of vehicle model  
 
-- Show a list of Automobiles  
-![Automobiles List](ghi/app/src/images/Automobile List.png)
-http://localhost:8100/api/automobiles/ <br>
+---
 
-- Show a list of Manufacturers  
-![Automobiles List](ghi/app/src/images/Manufacturer list.png)
-http://localhost:8100/api/manufacturers/ <br>
+### Service | `http://localhost:8080/`
+#### `api/techs/`
+`GET` | returns a dictionary with a list of technicians
+````json
+{
+    "techs": [
+        {
+            "id": database id for the technician,
+            "name": technician's name,
+            "employee_number": technician's employee number,
+        },
+        ...
+    ]
+}
+````
 
-### Services microservice
-
-- Enter a Technician  
-![Technician](ghi/app/src/images/Create a Technician.png)
-http://localhost:8080/api/techs/ <br>
-
+`POST` | creates a new service technician
 ```json
 {
     "name": "Kurt Lawrence",
@@ -134,10 +268,34 @@ http://localhost:8080/api/techs/ <br>
 }
 ```
 
-- Enter a Service Appointment  
-![Service Appointment](ghi/app/src/images/Create an Appointment.png)
-http://localhost:8080/api/services/ <br>
+#### `api/services/` 
+`GET` | returns a dictionary with a list of service appointments
+```json
+{
+    "appointments": [
+        {
+        "href": URL to the appointment,
+        "id": database id for the appointment,
+        "vin": vehicle identification number (vin) of the car,
+        "owner": name of the car owner/customer,
+        "date_time": date & time of the appointment,
+        "tech": {
+            "id": database id for the technician,
+            "name": technician's name,
+            "employee_number": the technician's employee number,
+        },
+        "status": status of the appointment; defaults to "PENDING",
+        "reason": description of the reason for appointment,
+        "vip": if the car was purchased from the dealership & requires VIP treatment;
+            references if vin matches Inventory database via AutomobileVO,
+            otherwise defaults to "False"
+        },
+        ...
+    ]
+}
+```
 
+`POST` | creates a new service appointment instance
 ```json
 {
     "vin": "ZHWUT4ZF6LLA14649",
@@ -146,22 +304,57 @@ http://localhost:8080/api/services/ <br>
     "tech": 30,
     "reason": "Tire rotation"
 }
+```  
+
+#### `api/services/:id` 
+`GET` | returns the details for the service appointment instance
+```json
+{
+    "href": URL to the appointment,
+    "id": database id for the appointment,
+    "vin": vehicle identification number (vin) of the car,
+    "owner": name of the car owner/customer,
+    "date_time": date & time of the appointment,
+    "tech": {
+        "id": database id for the technician,
+        "name": technician's name,
+        "employee_number": the technician's employee number,
+    },
+    "status": status of the appointment; defaults to "PENDING",
+    "reason": description of the reason for appointment,
+    "vip": if the car was purchased from the dealership & requires VIP treatment;
+        references if vin matches Inventory database via AutomobileVO,
+        otherwise defaults to "False"
+}
 ```
 
-- List of Scheduled Service Appointments  
-![Scheduled Service Appointments](ghi/app/src/images/Service List.png)
-http://localhost:8080/api/services/ <br>
+`PUT` | updates the properties of a service appointment object
+```json
+{
+    "status": "FINISHED"
+}
+```
 
-- List of Service History on a Specific Vin  
-![Service History](ghi/app/src/images/Service History.png)
-http://localhost:8080/api/services/1  <br>
+---
 
-### Sales microservice
+### Sales | `http://localhost:8090/`
 
-- Add a Sales Rep  
-![Sales Rep input](ghi/app/src/images/Create a Sales rep.png)
-http://localhost:8090/api/sales_rep/ <br>
+#### `api/sales_rep/`
+`GET` | returns a dictionary with a list of service reps
+```json
+{
+	"sales_reps": [
+        {
+            "id": database id for the technician,
+            "name": sales rep's name,
+            "employee_id": technician's employee number
+        },
+        ...
+    ]
+}
+```
 
+`POST` | creates a new service rep
 ```json
 {
 	"name": "Nomar Norman",
@@ -169,10 +362,22 @@ http://localhost:8090/api/sales_rep/ <br>
 }
 ```
 
-- Add a Customer  
-![Customer Input](ghi/app/src/images/Create a Customer.png)
-http://localhost:8090/api/customer/ <br>
+#### `api/customer/`
+`GET` | returns a dictionary with a list of customers
+```json
+{
+	"customers": [
+        {
+            "id": database id for the technician,
+            "name": customer's name,
+            "address": customer's address,
+            "phone_number": customer's phone number,
+        },
+        ...
+    ]
+}
 
+`POST` | creates a new service appointment instance
 ```json
 {
   "name": "Bargain Bob",
@@ -181,10 +386,35 @@ http://localhost:8090/api/customer/ <br>
 }
 ```
 
-- Create a Sales Record  
-![Sales Record Input](ghi/app/src/images/Make a Sale.png)
-http://localhost:8090/api/sales/ <br>
+#### `api/sales/`
+`GET` | returns a dictionary with a list of sales records
+```json
+{
+	"sales": [
+		{
+			"id": database id for the sales record,
+			"total": sale cost,
+			"sales_rep": {
+				"id": database id for the technician,
+				"name": sales rep's name,
+				"employee_id": technician's employee number
+			},
+			"customer": {
+				"id": database id for the technician,
+				"name": customer's name,
+				"address": customer's address,
+				"phone_number": customer's phone number,
+			},
+			"automobile_vo": {
+				"vin": vin of the purchased car
+			}
+		},
+        ...
+    ]
+}
+```
 
+`POST` | creates a new sales record instance
 ```json
 {
 	"total": 35000,
@@ -193,11 +423,3 @@ http://localhost:8090/api/sales/ <br>
 	"automobile_vo": 1
 }
 ```
-
-- Show a list of Sales  
-![Vehicle List](ghi/app/src/images/Sales History.png)
-http://localhost:8090/api/sales/ <br>
-
-- Show a Sales Reps Performance  
-![Automobiles List](ghi/app/src/images/Sales Rep History.png)
-http://localhost:8090/api/sales_rep_sales/1/ <br>

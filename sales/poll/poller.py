@@ -33,11 +33,9 @@ def get_automobiles():
 
 def poll():
     while True:
-        print('Sales poller polling for data')
         try:
             # Write your polling logic, here
             get_automobiles()
-            print("success yo")
         except Exception as e:
             print(e, file=sys.stderr)
         time.sleep(60)

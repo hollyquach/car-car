@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import Accordion from 'react-bootstrap/Accordion';
+import Alert from 'react-bootstrap/Alert';
 
+import "../index.css";
 export default function ServiceList() {
     //> set state for list & get data
     const [appts, setAppts] = useState([]);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
     const [searchVIN, setSearchVIN] = useState('');
     const [displayAll, setDisplayAll] = useState(false);
 
@@ -27,10 +32,18 @@ export default function ServiceList() {
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
             await response.json();
+            setSuccess(true);
+            window.setTimeout(()=>{setSuccess(false)}, 5000);
         } else {
             console.error("STATUS UPDATE ERROR");
+            showError();
         }
         getData();
+    }
+    
+    const showError = ()=>{
+        setError(true);
+        window.setTimeout(()=>{setError(false)}, 5000);
     }
 
     //> handling getting data, includes logic with url parameter to filter list
@@ -58,13 +71,26 @@ export default function ServiceList() {
     return (
         <div>
             <h3 className="my-3">Service Appointments</h3>
-            <div className="input-group my-3">
-                <input type="text" name="search" className="form-control" value={searchVIN} onChange={(event) => setSearchVIN(event.target.value)} />
-                <div className="input-group-append">
-                    <button className="btn btn-secondary" onClick={handleSearch}>Search</button>
-                    <button className="btn btn-secondary" onClick={handleClear}>Clear</button>
-                </div>
-            </div>
+            <Alert variant="success" className="text-center text-md-right" show={ success }>
+                appointment status updated
+            </Alert>
+            <Alert variant="warning" show={ error }>
+                error updating appointmment status
+            </Alert>
+            <Accordion>
+                <Accordion.Item eventKey="0">
+                    <Accordion.Header>Search Service History by VIN</Accordion.Header>
+                    <Accordion.Body>
+                        <div className="input-group my-3">
+                            <input type="text" name="search" className="form-control m-1" value={searchVIN} onChange={(event) => setSearchVIN(event.target.value)} />
+                            <div className="input-group-append">
+                                <button className="btn btn-secondary m-1" onClick={handleSearch}>Search</button>
+                                <button className="btn btn-outline-secondary m-1" onClick={handleClear}>Clear</button>
+                            </div>
+                        </div>
+                    </Accordion.Body>
+                </Accordion.Item>
+            </Accordion>
             <table className="table table-striped">
                 <thead>
                     <tr>

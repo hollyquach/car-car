@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert';
 
 import App from './App';
 import MainPage from './MainPage';
@@ -72,11 +73,13 @@ function None(props) {
     const navigate = useNavigate();
     // return for undefined path
     return (
-        <div className="alert alert-dark m-5 text-center" role="alert">
-            <h1>🙈🙈🙈</h1>
-            <h3>nothing to see here!</h3>
-            <p>broken link or something similar - please try another URL</p>
-            <button className="btn btn-secondary" onClick={() => navigate(-1)}>Go back</button>
+        <div className="m-5 text-center">
+            <Alert variant="secondary">
+                <h1>🙈🙈🙈</h1>
+                <h3>nothing to see here!</h3>
+                <p>broken link or something similar - please try another URL</p>
+                <button className="btn btn-secondary" onClick={() => navigate(-1)}>Go back</button>
+            </Alert>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 /* Parameters for POST api_list_appts
 {
@@ -26,7 +26,6 @@ export default class ServiceForm extends React.Component {
             techs: [],
         };
     }
-
 
 //> submit event handler -> POST to api
     handleSubmit = async (e) => {

@@ -19,31 +19,27 @@ export default function ServiceList() {
 
     //> handling for list buttons to change status
     const changeStatus = async (id, status) => {
-        const url = `http://localhost:8080/api/services/${id}/`
+            const url = `http://localhost:8080/api/services/${id}/`
 
-        const fetchConfig = {
-            method: "PUT",
-            body: JSON.stringify({ "status": status }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
+            const fetchConfig = {
+                method: "PUT",
+                body: JSON.stringify({ "status": status }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            };
 
-        const response = await fetch(url, fetchConfig);
-        if (response.ok) {
-            await response.json();
-            setSuccess(true);
-            window.setTimeout(()=>{setSuccess(false)}, 5000);
-        } else {
-            console.error("STATUS UPDATE ERROR");
-            showError();
-        }
+            const response = await fetch(url, fetchConfig);
+            if (response.ok) {
+                await response.json();
+                setSuccess(true);
+                window.setTimeout(()=>{setSuccess(false)}, 5000);
+            } else {
+                console.error("STATUS UPDATE ERROR");
+                setError(true);
+                window.setTimeout(()=>{setError(false)}, 5000);
+            }
         getData();
-    }
-    
-    const showError = ()=>{
-        setError(true);
-        window.setTimeout(()=>{setError(false)}, 5000);
     }
 
     //> handling getting data, includes logic with url parameter to filter list
@@ -71,13 +67,13 @@ export default function ServiceList() {
     return (
         <div>
             <h3 className="my-3">Service Appointments</h3>
-            <Alert variant="success" className="text-center text-md-right" show={ success }>
+            <Alert variant="success" className="text-center text-md-right my-3" show={ success }>
                 appointment status updated
             </Alert>
-            <Alert variant="warning" show={ error }>
-                error updating appointmment status
+            <Alert variant="warning" className="text-center text-md-right my-3" show={ error }>
+                error updating appointment status
             </Alert>
-            <Accordion>
+            <Accordion className="my-3">
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Search Service History by VIN</Accordion.Header>
                     <Accordion.Body>

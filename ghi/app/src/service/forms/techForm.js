@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState }  from 'react';
+import { Alert, Spinner } from 'react-bootstrap';
 
 /* Parameters for POST api_list_techs
 {
@@ -7,83 +8,82 @@ import React from 'react';
 }
 */
 
-export default class TechForm extends React.Component {
+export default function TechForm() {
 //> set inital state for properties
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: '',
-            employee_number: '',
-        };
-    }
-
+    const [tech, setTech] = useState({
+        name: "",
+        employee_number: "",
+    });
+    const [success, setSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
     
 //> submit event handler -> POST to api
-    handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
+        setLoading(true);
         //override GET request
         e.preventDefault();
-        const data = { ...this.state };
-
+        console.log("TECH DATA::::", tech)
         // define fetch parameters for POST request
         const techUrl = 'http://localhost:8080/api/techs/';
         const fetchConfig = {
             method: "POST",
-            body: JSON.stringify(data),
+            body: JSON.stringify(tech),
             headers: {
                 'Content-Type': 'application/json',
             },
         };
+
         const response = await fetch(techUrl, fetchConfig);
+
         if (response.ok) {
             await response.json();
-            
-            // clear form
-            const cleared = {
-                name: '',
-                employee_number: '',
-            };
-            this.setState(cleared);
-
+            setTech({
+                name: "",
+                employee_number: "",
+            });
+            setSuccess(true);
+            window.setTimeout(()=>{setSuccess(false)}, 5000);
         } else {
             console.error("TECHNICIAN FORM SUBMIT ERROR !!")
         }
+        setLoading(false);
     }
 
-
-//> state handling for props
-    handleNameChange = (event) => {
-        this.setState({
-            name: event.target.value
-        })
-    }
-    handleNumberChange = (event) => {
-        this.setState({
-            employee_number: event.target.value
-        })
-    }
-
+//> change handler -> update tech properties to form values
+    const handleChange = (event) => {
+        setTech({
+          ...tech,
+          [event.target.name]: event.target.value
+        });
+      };
 
 //> form definition
-    render() {
-        return (
-            <div className="row">
-                <div className="offset-3 col-6">
-                    <div className="shadow p-4 mt-4">
-                        <h3>Create new service technician</h3>
-                        <form onSubmit={this.handleSubmit} id="create-technician-form" >
-                            <div className="form-floating mb-3">
-                                <input placeholder="Name" required type="text" className="form-control" value={this.state.name} onChange={this.handleNameChange}/>
-                                <label htmlFor="name">Name</label>
-                            </div>
-                            <div className="form-floating mb-3">
-                                <input placeholder="Name" required type="text" className="form-control" value={this.state.employee_number} onChange={this.handleNumberChange}/>
+    return (
+        <>
+        <div className="row">
+            <div className="offset-3 col-6">
+                <div className="shadow p-4 mt-4">
+                    <h3>Create new service technician</h3>
+                    <form id="create-technician-form" >
+                        <div className="form-floating mb-3">
+                            <input placeholder="Name" required type="text" className="form-control" name="name" value={ tech.name } onChange={ handleChange } />
+                            <label htmlFor="name">Name</label>
+                        </div>
+                        <div className="form-floating mb-3">
+                            <input placeholder="Employee Number" required type="text" className="form-control" name="employee_number" value={ tech.employee_number } onChange={ handleChange }/>
                                 <label htmlFor="employee_number">Employee Number</label>
-                            </div>
-                            <button className="btn btn-primary">Create</button>
-                        </form>
-                    </div>
+                        </div>
+                        <div className="d-inline"> 
+                            <button className="btn btn-primary" onClick={handleSubmit}>Create</button>
+                            { loading ? <Spinner as="span" animation="border" className="mx-2" size="sm" role="status" aria-hidden="true"/> : ""}
+                            <Alert variant="success" className="text-center my-3" show={ success }>
+                                technician created!
+                            </Alert>
+                        </div>
+                    </form>
                 </div>
             </div>
-        )
-    }
+        </div>
+        </>
+    )
 };
